@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profit Brain — Login</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Serif+Display&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="login.css">
+</head>
+<body>
+
+  <!-- Logo -->
+  <div class="logo">
+    <div class="logo-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 11l9-9 9 9M5 9v10a1 1 0 001 1h4v-6h4v6h4a1 1 0 001-1V9"/>
+        <line x1="9" y1="21" x2="9" y2="15"/>
+        <path d="M12 3v3M8 7h8"/>
+      </svg>
+    </div>
+    <div class="logo-text">
+      <h1>Profit Brain</h1>
+      <p>Motor inteligente de cardápio</p>
+    </div>
+  </div>
+
+  <!-- Card -->
+  <div class="card">
+
+    <!-- Tabs -->
+    <div class="tabs">
+      <button class="tab active" id="tab-entrar" onclick="switchTab('entrar')">Entrar</button>
+      <button class="tab" id="tab-criar" onclick="switchTab('criar')">Criar Conta</button>
+    </div>
+
+    <!-- Mensagem de erro/sucesso -->
+    <div class="error-msg" id="error-msg"></div>
+
+    <!-- Painel: Entrar -->
+    <div class="entrar-panel" id="entrar-panel">
+
+      <div class="field">
+        <label>E-mail</label>
+        <div class="input-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="4" width="20" height="16" rx="2"/>
+            <path d="M2 7l10 7 10-7"/>
+          </svg>
+          <input type="email" id="email" placeholder="seu@email.com" autocomplete="email">
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Senha</label>
+        <div class="input-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="5" y="11" width="14" height="11" rx="2"/>
+            <path d="M8 11V7a4 4 0 018 0v4"/>
+          </svg>
+          <input type="password" id="senha" placeholder="••••••••" autocomplete="current-password">
+        </div>
+      </div>
+
+      <p class="role-label">Acessar como</p>
+      <div class="role-group">
+        <button class="role-btn" id="role-garcom" onclick="selectRole('garcom')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="8" r="4"/>
+            <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+          </svg>
+          Garçom
+        </button>
+        <button class="role-btn active" id="role-gerente" onclick="selectRole('gerente')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 11l9-9 9 9M5 9v10a1 1 0 001 1h4v-6h4v6h4a1 1 0 001-1V9"/>
+          </svg>
+          Gerente
+        </button>
+      </div>
+
+      <button class="btn-entrar" id="btn-entrar" onclick="fazerLogin()">
+        <span class="btn-text">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M15 3h4a2 2 0 012 2v14a2 2 0 01-2 2h-4M10 17l5-5-5-5M15 12H3"/>
+          </svg>
+          Entrar
+        </span>
+        <div class="spinner"></div>
+      </button>
+
+      <button class="forgot" onclick="esqueceuSenha()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 11-7.778 7.778 5.5 5.5 0 017.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/>
+        </svg>
+        Esqueci minha senha
+      </button>
+
+    </div>
+
+    <!-- Painel: Criar Conta -->
+    <div class="criar-conta-panel" id="criar-panel">
+
+      <div class="field">
+        <label>Nome completo</label>
+        <div class="input-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="8" r="4"/>
+            <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+          </svg>
+          <input type="text" id="nome" placeholder="Seu nome" autocomplete="name">
+        </div>
+      </div>
+
+      <div class="field">
+        <label>E-mail</label>
+        <div class="input-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="4" width="20" height="16" rx="2"/>
+            <path d="M2 7l10 7 10-7"/>
+          </svg>
+          <input type="email" id="email-novo" placeholder="seu@email.com" autocomplete="email">
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Senha</label>
+        <div class="input-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="5" y="11" width="14" height="11" rx="2"/>
+            <path d="M8 11V7a4 4 0 018 0v4"/>
+          </svg>
+          <input type="password" id="senha-nova" placeholder="Mínimo 6 caracteres" autocomplete="new-password">
+        </div>
+      </div>
+
+      <p class="role-label">Perfil de acesso</p>
+      <div class="role-group">
+        <button class="role-btn" id="role-garcom-c" onclick="selectRoleCriar('garcom')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="8" r="4"/>
+            <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+          </svg>
+          Garçom
+        </button>
+        <button class="role-btn active" id="role-gerente-c" onclick="selectRoleCriar('gerente')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 11l9-9 9 9M5 9v10a1 1 0 001 1h4v-6h4v6h4a1 1 0 001-1V9"/>
+          </svg>
+          Gerente
+        </button>
+      </div>
+
+      <button class="btn-entrar" id="btn-criar" onclick="criarConta()">
+        <span class="btn-text">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/>
+            <circle cx="9" cy="7" r="4"/>
+            <line x1="19" y1="8" x2="19" y2="14"/>
+            <line x1="22" y1="11" x2="16" y2="11"/>
+          </svg>
+          Criar Conta
+        </span>
+        <div class="spinner"></div>
+      </button>
+
+    </div>
+
+  </div>
+
+  <p class="footer-text">Sistema de otimização de cardápio em tempo real</p>
+
+  <!-- 1. Firebase SDK (module) -->
+  <script type="module" src="firebase.js"></script>
+
+  <!-- 2. Lógica da página (carrega depois do firebase.js) -->
+  <script src="login.js" defer></script>
+
+</body>
+</html>
