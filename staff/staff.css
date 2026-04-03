@@ -1,0 +1,195 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg: #0e0e0e;
+  --surface: #1a1a1a;
+  --surface-hover: #222;
+  --border: #2e2e2e;
+  --text: #f0f0f0;
+  --muted: #888;
+  --accent-orange: #f05a28;
+  --accent-blue: #3b7ff5;
+  --accent-green: #22c05a;
+  --radius: 14px;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Sora', sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+/* ── Back link ── */
+.back-link {
+  align-self: flex-start;
+  margin-bottom: 20px;
+  font-size: 0.82rem;
+  color: var(--muted);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: color 0.2s;
+  animation: fadeDown 0.4s ease both;
+  max-width: 440px;
+  width: 100%;
+}
+
+.back-link:hover { color: var(--text); }
+
+.back-link svg {
+  width: 14px;
+  height: 14px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ── Card ── */
+.card {
+  width: 100%;
+  max-width: 440px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px;
+  animation: fadeUp 0.45s ease 0.05s both;
+}
+
+.card-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.card-sub {
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-bottom: 24px;
+}
+
+/* ── Role buttons ── */
+.role-btn {
+  width: 100%;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px 18px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  cursor: pointer;
+  transition: background 0.18s, border-color 0.18s, transform 0.1s;
+  text-align: left;
+  margin-bottom: 8px;
+}
+
+.role-btn:last-child { margin-bottom: 0; }
+
+.role-btn:hover {
+  background: var(--surface-hover);
+  border-color: #3a3a3a;
+}
+
+.role-btn:active { transform: scale(0.985); }
+
+/* ── Role icon ── */
+.role-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.role-icon svg {
+  width: 22px;
+  height: 22px;
+  stroke: #fff;
+  fill: none;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.role-icon.orange {
+  background: var(--accent-orange);
+  box-shadow: 0 4px 14px rgba(240, 90, 40, 0.3);
+}
+
+.role-icon.blue {
+  background: var(--accent-blue);
+  box-shadow: 0 4px 14px rgba(59, 127, 245, 0.3);
+}
+
+.role-icon.green {
+  background: var(--accent-green);
+  box-shadow: 0 4px 14px rgba(34, 192, 90, 0.3);
+}
+
+/* ── Role info ── */
+.role-info {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.role-name {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.role-desc {
+  font-size: 0.76rem;
+  color: var(--muted);
+}
+
+/* ── Arrow ── */
+.role-arrow {
+  margin-left: auto;
+  color: #3a3a3a;
+  display: flex;
+  align-items: center;
+  transition: color 0.2s, transform 0.2s;
+}
+
+.role-btn:hover .role-arrow {
+  color: var(--muted);
+  transform: translateX(3px);
+}
+
+.role-arrow svg {
+  width: 16px;
+  height: 16px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ── Animations ── */
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}

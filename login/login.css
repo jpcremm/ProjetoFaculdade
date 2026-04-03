@@ -1,7 +1,3 @@
-/* =============================================
-   login.css — Profit Brain
-   ============================================= */
-
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -9,322 +5,266 @@
 }
 
 :root {
-  --gold:      #C68A0A;
-  --gold-dark: #A67208;
-  --gold-light:#F5DFA0;
-  --gold-bg:   #FDF3DC;
-  --bg:        #F7F4ED;
-  --card-bg:   #FFFFFF;
-  --text:      #1A1812;
-  --muted:     #7A7260;
-  --border:    #E5E0D5;
-  --input-bg:  #F9F7F3;
-  --shadow:    0 8px 40px rgba(0,0,0,0.08), 0 1px 3px rgba(0,0,0,0.04);
+  --bg: #0e0e0e;
+  --surface: #1a1a1a;
+  --border: #2e2e2e;
+  --text: #f0f0f0;
+  --muted: #888;
+  --accent: #f05a28;
+  --accent-hover: #e04d1e;
+  --input-bg: #252525;
+  --radius: 14px;
 }
 
-/* ---- Fundo ---- */
 body {
-  font-family: 'DM Sans', sans-serif;
   background: var(--bg);
+  color: var(--text);
+  font-family: 'Sora', sans-serif;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 24px;
-  position: relative;
-  overflow: hidden;
 }
 
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background:
-    radial-gradient(ellipse 60% 50% at 85% 60%, rgba(214,158,50,0.18) 0%, transparent 70%),
-    radial-gradient(ellipse 50% 60% at 10% 40%, rgba(247,244,237,0.9) 0%, transparent 70%);
-  pointer-events: none;
-}
-
-/* ---- Logo ---- */
-.logo {
-  position: fixed;
-  top: 24px;
-  left: 28px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  animation: fadeIn 0.5s ease both;
-}
-
-.logo-icon {
-  width: 44px;
-  height: 44px;
-  background: linear-gradient(145deg, #D4920E, #A67208);
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 12px rgba(166,114,8,0.35);
-}
-
-.logo-icon svg { width: 22px; height: 22px; color: #fff; }
-
-.logo-text h1 {
-  font-family: 'DM Serif Display', serif;
-  font-size: 15px;
-  color: var(--text);
-  line-height: 1;
-}
-
-.logo-text p {
-  font-size: 11px;
-  color: var(--muted);
-  margin-top: 2px;
-}
-
-/* ---- Card ---- */
-.card {
-  background: var(--card-bg);
-  border-radius: 22px;
-  box-shadow: var(--shadow);
-  padding: 32px;
-  width: 100%;
-  max-width: 380px;
-  animation: slideUp 0.5s cubic-bezier(0.22,1,0.36,1) both;
-  position: relative;
-  z-index: 1;
-}
-
-/* ---- Tabs ---- */
-.tabs {
-  display: flex;
-  background: #F2EEE6;
-  border-radius: 10px;
-  padding: 4px;
-  margin-bottom: 28px;
-}
-
-.tab {
-  flex: 1;
-  padding: 9px 0;
-  border: none;
-  border-radius: 8px;
-  font-family: 'DM Sans', sans-serif;
-  font-size: 14px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  background: transparent;
-  color: var(--muted);
-}
-
-.tab.active {
-  background: white;
-  color: var(--text);
-  box-shadow: 0 1px 4px rgba(0,0,0,0.10);
-}
-
-/* ---- Fields ---- */
-.field { margin-bottom: 18px; }
-
-.field label {
-  display: block;
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--text);
-  margin-bottom: 7px;
-}
-
-.input-wrap { position: relative; }
-
-.input-wrap svg {
-  position: absolute;
-  left: 14px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 16px;
-  height: 16px;
-  color: #B0A898;
-  pointer-events: none;
-}
-
-.input-wrap input {
-  width: 100%;
-  background: var(--input-bg);
-  border: 1.5px solid var(--border);
-  border-radius: 10px;
-  padding: 13px 14px 13px 42px;
-  font-family: 'DM Sans', sans-serif;
-  font-size: 14px;
-  color: var(--text);
-  outline: none;
-  transition: border-color 0.2s, box-shadow 0.2s;
-}
-
-.input-wrap input::placeholder { color: #C5BEB3; }
-
-.input-wrap input:focus {
-  border-color: var(--gold);
-  box-shadow: 0 0 0 3px rgba(198,138,10,0.12);
-  background: #fff;
-}
-
-/* ---- Role selector ---- */
-.role-label {
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--text);
-  margin-bottom: 10px;
-}
-
-.role-group {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  margin-bottom: 22px;
-}
-
-.role-btn {
-  border: 1.5px solid var(--border);
-  border-radius: 12px;
-  background: white;
-  padding: 14px 10px;
+/* ── Brand ── */
+.brand {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 6px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  font-family: 'DM Sans', sans-serif;
-  font-size: 14px;
-  font-weight: 500;
+  gap: 12px;
+  margin-bottom: 28px;
+  animation: fadeDown 0.5s ease both;
+}
+
+.logo-icon {
+  width: 64px;
+  height: 64px;
+  background: var(--accent);
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 24px rgba(240, 90, 40, 0.35);
+}
+
+.logo-icon svg {
+  width: 32px;
+  height: 32px;
+  fill: none;
+  stroke: #fff;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.brand-name {
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+}
+
+.brand-sub {
+  font-size: 0.8rem;
   color: var(--muted);
+  letter-spacing: 0.3px;
 }
 
-.role-btn svg { width: 22px; height: 22px; }
-.role-btn:hover { border-color: var(--gold-light); }
-
-.role-btn.active {
-  border-color: var(--gold);
-  background: var(--gold-bg);
-  color: var(--gold-dark);
-}
-
-.role-btn.active svg { color: var(--gold); }
-
-/* ---- Botão principal ---- */
-.btn-entrar {
+/* ── Card ── */
+.card {
   width: 100%;
-  background: linear-gradient(135deg, #D4920E 0%, #A67208 100%);
-  color: white;
+  max-width: 420px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px 28px 24px;
+  animation: fadeUp 0.5s ease 0.1s both;
+}
+
+.card-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin-bottom: 22px;
+}
+
+/* ── Fields ── */
+.field {
+  margin-bottom: 16px;
+}
+
+label {
+  display: block;
+  font-size: 0.78rem;
+  color: var(--muted);
+  margin-bottom: 7px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+}
+
+.input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-icon {
+  position: absolute;
+  left: 14px;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+}
+
+.input-icon svg {
+  width: 16px;
+  height: 16px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  background: var(--input-bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: var(--text);
+  font-family: 'Sora', sans-serif;
+  font-size: 0.88rem;
+  padding: 13px 14px 13px 42px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+input[type="email"]::placeholder,
+input[type="password"]::placeholder {
+  color: #4a4a4a;
+}
+
+input[type="email"]:focus,
+input[type="password"]:focus {
+  border-color: var(--accent);
+}
+
+/* ── Primary button ── */
+.btn-primary {
+  width: 100%;
+  background: var(--accent);
+  color: #fff;
   border: none;
-  border-radius: 12px;
-  padding: 15px;
-  font-family: 'DM Sans', sans-serif;
-  font-size: 15px;
+  border-radius: 10px;
+  padding: 14px;
+  font-family: 'Sora', sans-serif;
+  font-size: 0.9rem;
   font-weight: 600;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  transition: all 0.2s ease;
-  box-shadow: 0 4px 16px rgba(166,114,8,0.30);
-  margin-bottom: 16px;
+  margin-top: 8px;
+  transition: background 0.2s, transform 0.1s;
 }
 
-.btn-entrar:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 6px 20px rgba(166,114,8,0.40);
+.btn-primary:hover  { background: var(--accent-hover); }
+.btn-primary:active { transform: scale(0.98); }
+
+.btn-primary svg {
+  width: 16px;
+  height: 16px;
+  stroke: #fff;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
-.btn-entrar:active { transform: translateY(0); }
-
-.btn-text {
+/* ── Links ── */
+.links {
   display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.btn-text svg { width: 18px; height: 18px; }
-
-/* ---- Spinner ---- */
-.spinner {
-  display: none;
-  width: 18px;
-  height: 18px;
-  border: 2px solid rgba(255,255,255,0.4);
-  border-top-color: white;
-  border-radius: 50%;
-  animation: spin 0.7s linear infinite;
-}
-
-.btn-entrar.loading .btn-text { display: none; }
-.btn-entrar.loading .spinner  { display: block; }
-
-/* ---- Esqueci senha ---- */
-.forgot {
-  text-align: center;
-  font-size: 13px;
-  color: var(--muted);
-  background: none;
-  border: none;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
   justify-content: center;
-  gap: 6px;
-  width: 100%;
-  font-family: 'DM Sans', sans-serif;
+  gap: 12px;
+  margin-top: 18px;
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+.links a {
+  color: var(--muted);
+  text-decoration: none;
   transition: color 0.2s;
 }
 
-.forgot:hover { color: var(--gold); }
-.forgot svg { width: 14px; height: 14px; }
+.links a:hover { color: var(--text); }
+.links span    { opacity: 0.4; }
 
-/* ---- Mensagens ---- */
-.error-msg {
-  background: #FEF2F2;
-  border: 1px solid #FECACA;
-  color: #B91C1C;
-  border-radius: 8px;
-  padding: 10px 14px;
-  font-size: 13px;
-  margin-bottom: 16px;
-  display: none;
+/* ── Staff card ── */
+.staff-card {
+  width: 100%;
+  max-width: 420px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px 28px;
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  animation: fadeUp 0.5s ease 0.2s both;
 }
 
-.error-msg.show    { display: block; }
-.error-msg.success { background: #F0FDF4; border-color: #BBF7D0; color: #15803D; }
-
-/* ---- Painéis ---- */
-.criar-conta-panel      { display: none; }
-.criar-conta-panel.show { display: block; }
-.entrar-panel.hide      { display: none; }
-
-/* ---- Rodapé ---- */
-.footer-text {
-  margin-top: 28px;
-  font-size: 12px;
+.staff-question {
+  font-size: 0.8rem;
   color: var(--muted);
-  text-align: center;
-  animation: fadeIn 0.8s 0.3s ease both;
-  position: relative;
-  z-index: 1;
 }
 
-/* ---- Animações ---- */
-@keyframes slideUp {
-  from { opacity: 0; transform: translateY(24px); }
+.btn-staff {
+  background: none;
+  border: none;
+  color: var(--text);
+  font-family: 'Sora', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: color 0.2s;
+}
+
+.btn-staff:hover { color: var(--accent); }
+
+.btn-staff svg {
+  width: 17px;
+  height: 17px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ── Footer ── */
+footer {
+  margin-top: 28px;
+  font-size: 0.72rem;
+  color: #444;
+  animation: fadeUp 0.5s ease 0.3s both;
+}
+
+/* ── Animations ── */
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-16px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-}
-
-@keyframes spin {
-  to { transform: rotate(360deg); }
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
 }

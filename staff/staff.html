@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Profit Brain Delivery – Acesso Staff</title>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="staff.css" />
+</head>
+<body>
+
+  <a class="back-link" href="login.html">
+    <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+    Voltar para login de cliente
+  </a>
+
+  <div class="card">
+    <div class="card-title">Acesso Staff</div>
+    <div class="card-sub">Selecione sua função para acessar o sistema</div>
+
+    <button class="role-btn" data-role="gerente">
+      <div class="role-icon orange">
+        <svg viewBox="0 0 24 24">
+          <rect x="3" y="3" width="7" height="7" rx="1"/>
+          <rect x="14" y="3" width="7" height="7" rx="1"/>
+          <rect x="3" y="14" width="7" height="7" rx="1"/>
+          <rect x="14" y="14" width="7" height="7" rx="1"/>
+        </svg>
+      </div>
+      <div class="role-info">
+        <span class="role-name">Gerente</span>
+        <span class="role-desc">Dashboard e análises</span>
+      </div>
+      <span class="role-arrow">
+        <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+      </span>
+    </button>
+
+    <button class="role-btn" data-role="cozinha">
+      <div class="role-icon blue">
+        <svg viewBox="0 0 24 24">
+          <path d="M12 2a7 7 0 0 1 7 7c0 3-1.5 5.5-4 6.6V18H9v-2.4C6.5 14.5 5 12 5 9a7 7 0 0 1 7-7z"/>
+          <path d="M9 22h6"/>
+        </svg>
+      </div>
+      <div class="role-info">
+        <span class="role-name">Cozinha</span>
+        <span class="role-desc">Preparação de pedidos</span>
+      </div>
+      <span class="role-arrow">
+        <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+      </span>
+    </button>
+
+    <button class="role-btn" data-role="entregador">
+      <div class="role-icon green">
+        <svg viewBox="0 0 24 24">
+          <rect x="1" y="3" width="15" height="13" rx="1"/>
+          <path d="M16 8h4l3 5v3h-7V8z"/>
+          <circle cx="5.5" cy="18.5" r="2.5"/>
+          <circle cx="18.5" cy="18.5" r="2.5"/>
+        </svg>
+      </div>
+      <div class="role-info">
+        <span class="role-name">Entregador</span>
+        <span class="role-desc">Coleta e entrega</span>
+      </div>
+      <span class="role-arrow">
+        <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+      </span>
+    </button>
+  </div>
+
+  <script src="staff.js"></script>
+</body>
+</html>
