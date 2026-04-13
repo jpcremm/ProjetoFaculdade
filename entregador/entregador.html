@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Entregas</title>
+  <link rel="stylesheet" href="entregador.css" />
+</head>
+<body>
+
+  <!-- Top Bar -->
+  <div class="topbar">
+    <div class="topbar-left">
+      <h1>Entregas</h1>
+      <p id="active-label">3 entregas ativas</p>
+    </div>
+    <div class="topbar-right">
+      <div class="stat-col">
+        <div class="stat-num green" id="count-coletar">2</div>
+        <div class="stat-label">Para coletar</div>
+      </div>
+      <div class="stat-col">
+        <div class="stat-num purple" id="count-rota">1</div>
+        <div class="stat-label">Em rota</div>
+      </div>
+      <div class="stat-col">
+        <div class="stat-num gray" id="count-entregues">0</div>
+        <div class="stat-label">Entregues</div>
+      </div>
+      <button class="logout-btn" title="Sair">⇥</button>
+    </div>
+  </div>
+
+  <!-- Abas -->
+  <div class="tabs">
+    <button class="tab active" data-tab="ativas">Entregas ativas</button>
+    <button class="tab" data-tab="realizadas">Realizadas hoje <span class="tab-badge" id="tab-badge">0</span></button>
+  </div>
+
+  <!-- Painel: Ativas -->
+  <div id="painel-ativas" class="painel">
+    <div class="content">
+
+      <!-- Coluna: Prontos para retirada -->
+      <div>
+        <div class="section-title">
+          <span>📦</span>
+          <span id="prontos-title">Prontos para retirada (2)</span>
+        </div>
+
+        <div id="prontos-list">
+
+          <!-- Pedido #7842 -->
+          <div class="card" id="card-7842">
+            <div class="card-header">
+              <div class="card-header-left">
+                <span class="card-id">#7842</span>
+                <span class="badge pronto">✓ Pronto</span>
+              </div>
+              <div class="timer">🕐 8min</div>
+            </div>
+            <div class="customer-name">Maria Costa</div>
+            <div class="customer-phone">📞 (11) 98765-4321</div>
+            <div class="address-box">
+              <span class="address-icon">📍</span>
+              <div>
+                <div class="address-street">Praça Central, 321</div>
+                <div class="address-detail">Loja - Próximo ao mercado</div>
+                <div class="address-dist">1.2 km</div>
+              </div>
+            </div>
+            <div class="card-footer">
+              <span class="price">R$ 42.50</span>
+              <button class="btn green"
+                data-action="iniciar"
+                data-id="7842"
+                data-nome="Maria Costa"
+                data-tel="(11) 98765-4321"
+                data-endereco="Praça Central, 321"
+                data-valor="R$ 42.50">
+                ✈ Iniciar entrega
+              </button>
+            </div>
+          </div>
+
+          <!-- Pedido #7841 -->
+          <div class="card" id="card-7841">
+            <div class="card-header">
+              <div class="card-header-left">
+                <span class="card-id">#7841</span>
+                <span class="badge pronto">✓ Pronto</span>
+              </div>
+              <div class="timer">🕐 15min</div>
+            </div>
+            <div class="customer-name">Pedro Alves</div>
+            <div class="customer-phone">📞 (11) 91234-5678</div>
+            <div class="address-box">
+              <span class="address-icon">📍</span>
+              <div>
+                <div class="address-street">Rua das Acácias, 567</div>
+                <div class="address-detail">Apto 302 - Portão azul</div>
+                <div class="address-dist">2.5 km</div>
+              </div>
+            </div>
+            <div class="card-footer">
+              <span class="price">R$ 58.90</span>
+              <button class="btn green"
+                data-action="iniciar"
+                data-id="7841"
+                data-nome="Pedro Alves"
+                data-tel="(11) 91234-5678"
+                data-endereco="Rua das Acácias, 567"
+                data-valor="R$ 58.90">
+                ✈ Iniciar entrega
+              </button>
+            </div>
+          </div>
+
+        </div>
+        <div class="empty-msg" id="prontos-empty">Nenhum pedido pronto para retirada.</div>
+      </div>
+
+      <!-- Coluna: Em rota -->
+      <div>
+        <div class="section-title">
+          <span>✈</span>
+          <span id="rota-title">Em rota (1)</span>
+        </div>
+
+        <div id="rota-list">
+
+          <!-- Pedido #7840 -->
+          <div class="card active-delivery" id="card-7840">
+            <div class="card-header">
+              <div class="card-header-left">
+                <span class="card-id">#7840</span>
+                <span class="badge em-rota">✈ Saiu para entrega</span>
+              </div>
+            </div>
+            <div class="customer-name">Lucas Mendes</div>
+            <div class="customer-phone">📞 (11) 97777-8888</div>
+            <div class="address-box dark">
+              <span class="address-icon">📍</span>
+              <div>
+                <div class="address-street">Av. Paulista, 1000</div>
+                <div class="address-detail">Torre A - 15º andar</div>
+                <div class="address-dist">3.8 km</div>
+              </div>
+            </div>
+            <div class="delivery-actions">
+              <button class="btn ghost"
+                data-action="ligar"
+                data-tel="(11) 97777-8888">
+                📞 Ligar
+              </button>
+              <button class="btn green"
+                data-action="entregar"
+                data-id="7840"
+                data-nome="Lucas Mendes"
+                data-tel="(11) 97777-8888"
+                data-endereco="Av. Paulista, 1000"
+                data-valor="R$ 73.00">
+                ✓ Entregar
+              </button>
+            </div>
+          </div>
+
+        </div>
+        <div class="empty-msg" id="rota-empty">Nenhuma entrega em rota.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Painel: Realizadas -->
+  <div id="painel-realizadas" class="painel hidden">
+    <div class="realizadas-header">
+      <div class="realizadas-resumo">
+        <div class="resumo-item">
+          <span class="resumo-valor" id="resumo-total">0</span>
+          <span class="resumo-label">Entregas</span>
+        </div>
+        <div class="resumo-divider"></div>
+        <div class="resumo-item">
+          <span class="resumo-valor green" id="resumo-valor">R$ 0,00</span>
+          <span class="resumo-label">Total recebido</span>
+        </div>
+      </div>
+    </div>
+
+    <div id="realizadas-list"></div>
+    <div class="empty-msg" id="realizadas-empty" style="display:block; text-align:center; padding: 48px 0;">
+      Nenhuma entrega realizada ainda hoje.
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast"></div>
+
+  <script src="entregador.js"></script>
+</body>
+</html>
