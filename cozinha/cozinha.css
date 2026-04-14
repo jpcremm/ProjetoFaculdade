@@ -1,0 +1,310 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #111;
+  color: #fff;
+  font-family: sans-serif;
+  min-height: 100vh;
+}
+
+/* ── Top Bar ── */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  border-bottom: 0.5px solid #2a2a2a;
+}
+
+.topbar-left h1 {
+  font-size: 20px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.topbar-left p {
+  font-size: 13px;
+  color: #888;
+  margin-top: 2px;
+}
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+/* ── Botão Pico ── */
+.pico-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #1e1e1e;
+  border: 0.5px solid #3a3a3a;
+  border-radius: 10px;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+  color: #fff;
+}
+
+.pico-btn:hover {
+  background: #2a2a2a;
+}
+
+.pico-btn.ativo {
+  background: #2a1500;
+  border-color: #f97316;
+}
+
+.pico-icon {
+  font-size: 18px;
+}
+
+.pico-text {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.pico-mode {
+  font-size: 11px;
+  color: #888;
+}
+
+.pico-btn.ativo .pico-mode {
+  color: #f97316;
+}
+
+.pico-label {
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+}
+
+/* ── Stats ── */
+.stat-col { text-align: center; }
+
+.stat-num {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.stat-num.orange { color: #f97316; }
+.stat-num.blue   { color: #60a5fa; }
+.stat-num.green  { color: #00d48a; }
+
+.stat-label {
+  font-size: 11px;
+  color: #888;
+  margin-top: 2px;
+}
+
+.logout-btn {
+  background: none;
+  border: none;
+  color: #888;
+  cursor: pointer;
+  font-size: 18px;
+  padding: 4px 8px;
+}
+
+/* ── Banner Modo Pico ── */
+.pico-banner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #2a1200;
+  border-bottom: 0.5px solid #f9731644;
+  padding: 12px 24px;
+  font-size: 13px;
+  color: #f97316;
+  font-weight: 500;
+}
+
+.pico-banner.hidden {
+  display: none;
+}
+
+.pico-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #f97316;
+  flex-shrink: 0;
+}
+
+/* ── Colunas ── */
+.content {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 24px;
+  padding: 24px;
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+
+.section-title.orange { color: #f97316; }
+.section-title.blue   { color: #60a5fa; }
+.section-title.green  { color: #00d48a; }
+
+/* ── Cards ── */
+.card {
+  background: #1c1c1c;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 14px;
+  border: 0.5px solid #2a2a2a;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.card-header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.card-id {
+  font-size: 12px;
+  color: #888;
+}
+
+/* ── Badges ── */
+.badge {
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 20px;
+  font-weight: 600;
+}
+
+.badge.orange {
+  background: #2a1000;
+  color: #f97316;
+  border: 0.5px solid #f9731644;
+}
+
+.badge.blue {
+  background: #0a1a2e;
+  color: #60a5fa;
+  border: 0.5px solid #60a5fa44;
+}
+
+.badge.green {
+  background: #0a2e1e;
+  color: #00d48a;
+  border: 0.5px solid #00d48a44;
+}
+
+.timer {
+  font-size: 12px;
+  color: #888;
+}
+
+/* ── Conteúdo do card ── */
+.customer-name {
+  font-size: 14px;
+  color: #aaa;
+  margin-bottom: 10px;
+}
+
+.itens-list {
+  background: #242424;
+  border-radius: 8px;
+  padding: 10px 12px;
+  margin-bottom: 10px;
+}
+
+.item-row {
+  font-size: 14px;
+  color: #ddd;
+  padding: 3px 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.item-qty {
+  font-weight: 700;
+  color: #fff;
+  min-width: 16px;
+}
+
+.address-row {
+  font-size: 12px;
+  color: #888;
+  margin-bottom: 12px;
+}
+
+/* ── Rodapé do card ── */
+.card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 4px;
+}
+
+.price {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.price.green { color: #00d48a; }
+
+/* ── Botões ── */
+.btn {
+  border: none;
+  border-radius: 8px;
+  padding: 9px 20px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+
+.btn:hover { opacity: 0.85; }
+
+.btn.orange {
+  background: #f97316;
+  color: #fff;
+}
+
+/* ── Empty state ── */
+.empty-msg {
+  display: none;
+  color: #555;
+  font-size: 13px;
+  padding: 12px 0;
+}
+
+/* ── Toast ── */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #f97316;
+  color: #fff;
+  padding: 10px 22px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  display: none;
+  z-index: 999;
+}

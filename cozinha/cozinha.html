@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cozinha</title>
+  <link rel="stylesheet" href="cozinha.css" />
+</head>
+<body>
+
+  <!-- Top Bar -->
+  <div class="topbar">
+    <div class="topbar-left">
+      <h1>Cozinha</h1>
+      <p id="active-label">3 pedidos em andamento</p>
+    </div>
+    <div class="topbar-right">
+      <button class="pico-btn" id="pico-btn" data-action="toggle-pico">
+        <span class="pico-icon">⚡</span>
+        <span class="pico-text">
+          <span class="pico-mode" id="pico-mode">Modo Normal</span>
+          <span class="pico-label" id="pico-label">Ativar Pico</span>
+        </span>
+      </button>
+      <div class="stat-col">
+        <div class="stat-num orange" id="count-pendentes">1</div>
+        <div class="stat-label">Pendentes</div>
+      </div>
+      <div class="stat-col">
+        <div class="stat-num blue" id="count-preparando">2</div>
+        <div class="stat-label">Preparando</div>
+      </div>
+      <div class="stat-col">
+        <div class="stat-num green" id="count-prontos">1</div>
+        <div class="stat-label">Prontos</div>
+      </div>
+      <button class="logout-btn" title="Sair">⇥</button>
+    </div>
+  </div>
+
+  <!-- Banner Modo Pico -->
+  <div class="pico-banner hidden" id="pico-banner">
+    <span class="pico-dot"></span>
+    Modo Pico ativado - O cardápio do cliente foi reorganizado para priorizar pratos rápidos e operacionais
+  </div>
+
+  <!-- Colunas -->
+  <div class="content">
+
+    <!-- Pendentes -->
+    <div>
+      <div class="section-title orange">
+        <span>🕐</span>
+        <span id="title-pendentes">Pendentes (1)</span>
+      </div>
+      <div id="list-pendentes">
+
+        <div class="card" id="card-7845"
+          data-nome="Carlos Silva"
+          data-itens="2 Hambúrguer Artesanal|1 Batata Frita"
+          data-endereco="Rua das Flores, 123 - Apto 45"
+          data-valor="R$ 78.90"
+          data-estado="pendente">
+          <div class="card-header">
+            <div class="card-header-left">
+              <span class="card-id">#7845</span>
+              <span class="badge orange">🕐 Pendente</span>
+            </div>
+            <div class="timer">🕐 48min</div>
+          </div>
+          <div class="customer-name">👤 Carlos Silva</div>
+          <div class="itens-list">
+            <div class="item-row"><span class="item-qty">2</span> Hambúrguer Artesanal</div>
+            <div class="item-row"><span class="item-qty">1</span> Batata Frita</div>
+          </div>
+          <div class="address-row">📍 Rua das Flores, 123 - Apto 45</div>
+          <div class="card-footer">
+            <span class="price green">$ R$ 78.90</span>
+            <button class="btn orange" data-action="avancar" data-id="7845">Avançar</button>
+          </div>
+        </div>
+
+      </div>
+      <div class="empty-msg" id="empty-pendentes">Nenhum pedido pendente.</div>
+    </div>
+
+    <!-- Preparando -->
+    <div>
+      <div class="section-title blue">
+        <span>📦</span>
+        <span id="title-preparando">Preparando (2)</span>
+      </div>
+      <div id="list-preparando">
+
+        <div class="card" id="card-7844"
+          data-nome="Ana Santos"
+          data-itens="1 Pizza Margherita|2 Refrigerante"
+          data-endereco="Av. Principal, 456 - Casa"
+          data-valor="R$ 55.00"
+          data-estado="preparando">
+          <div class="card-header">
+            <div class="card-header-left">
+              <span class="card-id">#7844</span>
+              <span class="badge blue">📦 Preparando</span>
+            </div>
+            <div class="timer">🕐 54min</div>
+          </div>
+          <div class="customer-name">👤 Ana Santos</div>
+          <div class="itens-list">
+            <div class="item-row"><span class="item-qty">1</span> Pizza Margherita</div>
+            <div class="item-row"><span class="item-qty">2</span> Refrigerante</div>
+          </div>
+          <div class="address-row">📍 Av. Principal, 456 - Casa</div>
+          <div class="card-footer">
+            <span class="price green">$ R$ 55.00</span>
+            <button class="btn orange" data-action="avancar" data-id="7844">Avançar</button>
+          </div>
+        </div>
+
+        <div class="card" id="card-7843"
+          data-nome="João Oliveira"
+          data-itens="1 Sushi Combo Premium"
+          data-endereco="Rua dos Pinheiros, 789 - Apto 101"
+          data-valor="R$ 89.90"
+          data-estado="preparando">
+          <div class="card-header">
+            <div class="card-header-left">
+              <span class="card-id">#7843</span>
+              <span class="badge blue">📦 Preparando</span>
+            </div>
+            <div class="timer">🕐 58min</div>
+          </div>
+          <div class="customer-name">👤 João Oliveira</div>
+          <div class="itens-list">
+            <div class="item-row"><span class="item-qty">1</span> Sushi Combo Premium</div>
+          </div>
+          <div class="address-row">📍 Rua dos Pinheiros, 789 - Apto 101</div>
+          <div class="card-footer">
+            <span class="price green">$ R$ 89.90</span>
+            <button class="btn orange" data-action="avancar" data-id="7843">Avançar</button>
+          </div>
+        </div>
+
+      </div>
+      <div class="empty-msg" id="empty-preparando">Nenhum pedido em preparo.</div>
+    </div>
+
+    <!-- Prontos -->
+    <div>
+      <div class="section-title green">
+        <span>✅</span>
+        <span id="title-prontos">Prontos (1)</span>
+      </div>
+      <div id="list-prontos">
+
+        <div class="card" id="card-7842"
+          data-nome="Maria Costa"
+          data-itens="1 Salada Caesar|1 Suco Natural"
+          data-endereco="Praça Central, 321 - Loja"
+          data-valor="R$ 42.50"
+          data-estado="pronto">
+          <div class="card-header">
+            <div class="card-header-left">
+              <span class="card-id">#7842</span>
+              <span class="badge green">✅ Pronto</span>
+            </div>
+            <div class="timer">🕐 66min</div>
+          </div>
+          <div class="customer-name">👤 Maria Costa</div>
+          <div class="itens-list">
+            <div class="item-row"><span class="item-qty">1</span> Salada Caesar</div>
+            <div class="item-row"><span class="item-qty">1</span> Suco Natural</div>
+          </div>
+          <div class="address-row">📍 Praça Central, 321 - Loja</div>
+          <div class="card-footer">
+            <span class="price green">$ R$ 42.50</span>
+          </div>
+        </div>
+
+      </div>
+      <div class="empty-msg" id="empty-prontos">Nenhum pedido pronto.</div>
+    </div>
+
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast"></div>
+
+  <script src="cozinha.js"></script>
+</body>
+</html>
