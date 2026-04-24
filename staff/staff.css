@@ -31,7 +31,7 @@ body {
 
 /* ── Back link ── */
 .back-link {
-  align-self: flex-start;
+  align-self: flex;
   margin-bottom: 20px;
   font-size: 0.82rem;
   color: var(--muted);

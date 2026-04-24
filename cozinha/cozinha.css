@@ -12,7 +12,7 @@ body {
 }
 
 /* ── Top Bar ── */
-.topbar {
+header.topbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -20,19 +20,19 @@ body {
   border-bottom: 0.5px solid #2a2a2a;
 }
 
-.topbar-left h1 {
+hgroup.topbar-left h1 {
   font-size: 20px;
   font-weight: 700;
   color: #fff;
 }
 
-.topbar-left p {
+hgroup.topbar-left p {
   font-size: 13px;
   color: #888;
   margin-top: 2px;
 }
 
-.topbar-right {
+nav.topbar-right {
   display: flex;
   align-items: center;
   gap: 24px;
@@ -52,18 +52,14 @@ body {
   color: #fff;
 }
 
-.pico-btn:hover {
-  background: #2a2a2a;
-}
+.pico-btn:hover { background: #2a2a2a; }
 
 .pico-btn.ativo {
   background: #2a1500;
   border-color: #f97316;
 }
 
-.pico-icon {
-  font-size: 18px;
-}
+.pico-icon { font-size: 18px; }
 
 .pico-text {
   display: flex;
@@ -71,34 +67,42 @@ body {
   text-align: left;
 }
 
-.pico-mode {
+small.pico-mode {
   font-size: 11px;
   color: #888;
 }
 
-.pico-btn.ativo .pico-mode {
-  color: #f97316;
-}
+.pico-btn.ativo small.pico-mode { color: #f97316; }
 
-.pico-label {
+strong.pico-label {
   font-size: 14px;
   font-weight: 700;
   color: #fff;
 }
 
-/* ── Stats ── */
-.stat-col { text-align: center; }
+/* ── Stats (dl/dt/dd) ── */
+dl.stats-list {
+  display: flex;
+  gap: 24px;
+  list-style: none;
+}
 
-.stat-num {
+.stat-col {
+  display: flex;
+  flex-direction: column-reverse; /* dd (número) aparece acima do dt (label) */
+  align-items: center;
+}
+
+dd.stat-num {
   font-size: 22px;
   font-weight: 700;
 }
 
-.stat-num.orange { color: #f97316; }
-.stat-num.blue   { color: #60a5fa; }
-.stat-num.green  { color: #00d48a; }
+dd.stat-num.orange { color: #f97316; }
+dd.stat-num.blue   { color: #60a5fa; }
+dd.stat-num.green  { color: #00d48a; }
 
-.stat-label {
+dt.stat-label {
   font-size: 11px;
   color: #888;
   margin-top: 2px;
@@ -114,7 +118,7 @@ body {
 }
 
 /* ── Banner Modo Pico ── */
-.pico-banner {
+aside.pico-banner {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -126,9 +130,7 @@ body {
   font-weight: 500;
 }
 
-.pico-banner.hidden {
-  display: none;
-}
+aside.pico-banner.hidden { display: none; }
 
 .pico-dot {
   width: 8px;
@@ -138,15 +140,16 @@ body {
   flex-shrink: 0;
 }
 
-/* ── Colunas ── */
-.content {
+/* ── Layout principal ── */
+main.content {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 24px;
   padding: 24px;
 }
 
-.section-title {
+/* ── Títulos de seção ── */
+h2.section-title {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -155,12 +158,19 @@ body {
   margin-bottom: 14px;
 }
 
-.section-title.orange { color: #f97316; }
-.section-title.blue   { color: #60a5fa; }
-.section-title.green  { color: #00d48a; }
+h2.section-title.orange { color: #f97316; }
+h2.section-title.blue   { color: #60a5fa; }
+h2.section-title.green  { color: #00d48a; }
 
-/* ── Cards ── */
-.card {
+/* ── Lista de cards ── */
+ol.card-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* ── Card (li) ── */
+li.card {
   background: #1c1c1c;
   border-radius: 12px;
   padding: 16px;
@@ -168,11 +178,16 @@ body {
   border: 0.5px solid #2a2a2a;
 }
 
-.card-header {
+/* header dentro do li */
+li.card > header.card-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 10px;
+  /* reset de estilos herdados do header global */
+  background: none;
+  border: none;
+  padding: 0;
 }
 
 .card-header-left {
@@ -186,86 +201,98 @@ body {
   color: #888;
 }
 
-/* ── Badges ── */
-.badge {
+/* ── Badge (mark) ── */
+mark.badge {
   font-size: 11px;
   padding: 2px 8px;
   border-radius: 20px;
   font-weight: 600;
+  background: none; /* cancela o amarelo padrão do <mark> */
 }
 
-.badge.orange {
+mark.badge.orange {
   background: #2a1000;
   color: #f97316;
   border: 0.5px solid #f9731644;
 }
 
-.badge.blue {
+mark.badge.blue {
   background: #0a1a2e;
   color: #60a5fa;
   border: 0.5px solid #60a5fa44;
 }
 
-.badge.green {
+mark.badge.green {
   background: #0a2e1e;
   color: #00d48a;
   border: 0.5px solid #00d48a44;
 }
 
-.timer {
+time.timer {
   font-size: 12px;
   color: #888;
 }
 
 /* ── Conteúdo do card ── */
-.customer-name {
+p.customer-name {
   font-size: 14px;
   color: #aaa;
   margin-bottom: 10px;
 }
 
-.itens-list {
+ul.itens-list {
+  list-style: none;
   background: #242424;
   border-radius: 8px;
   padding: 10px 12px;
   margin-bottom: 10px;
 }
 
-.item-row {
+li.item-row {
   font-size: 14px;
   color: #ddd;
   padding: 3px 0;
   display: flex;
   align-items: center;
   gap: 8px;
+  /* sem border/background extra herdado */
+  background: none;
+  border: none;
+  border-radius: 0;
+  margin-bottom: 0;
 }
 
-.item-qty {
+b.item-qty {
   font-weight: 700;
   color: #fff;
   min-width: 16px;
 }
 
-.address-row {
+address.address-row {
   font-size: 12px;
   color: #888;
+  font-style: normal; /* <address> é itálico por padrão */
   margin-bottom: 12px;
 }
 
 /* ── Rodapé do card ── */
-.card-footer {
+li.card > footer.card-footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-top: 4px;
+  /* reset */
+  background: none;
+  border: none;
+  padding: 0;
 }
 
-.price {
+strong.price {
   font-size: 16px;
   font-weight: 700;
 }
 
-.price.green { color: #00d48a; }
+strong.price.green { color: #00d48a; }
 
 /* ── Botões ── */
 .btn {
@@ -286,7 +313,7 @@ body {
 }
 
 /* ── Empty state ── */
-.empty-msg {
+p.empty-msg {
   display: none;
   color: #555;
   font-size: 13px;
@@ -294,7 +321,7 @@ body {
 }
 
 /* ── Toast ── */
-.toast {
+output.toast {
   position: fixed;
   bottom: 24px;
   left: 50%;

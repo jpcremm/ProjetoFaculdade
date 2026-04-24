@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Recuperar senha</title>
+  <link rel="stylesheet" href="recuperar.css" />
+</head>
+<body>
+
+  <a href="login.html" class="back-link" aria-label="Voltar para a página de login">
+    <span aria-hidden="true">←</span> Voltar para login
+  </a>
+
+  <main class="page-wrapper" role="main">
+    <section class="auth-card" aria-labelledby="form-title">
+
+      <header class="auth-card__header">
+        <h1 id="form-title" class="auth-card__title">Recuperar senha</h1>
+        <p class="auth-card__subtitle">Digite seu e-mail para receber um link de recuperação</p>
+      </header>
+
+      <!-- Estado padrão: formulário de recuperação -->
+      <article id="recovery-form-wrapper" aria-label="Formulário de recuperação de senha">
+        <form class="auth-form" id="recovery-form" novalidate>
+
+          <fieldset class="auth-form__group">
+            <label for="email" class="auth-form__label">E-mail</label>
+            <div class="input-wrapper">
+              <span class="input-icon" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect width="20" height="16" x="2" y="4" rx="2"/>
+                  <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+                </svg>
+              </span>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                class="auth-form__input"
+                placeholder="seu@email.com"
+                autocomplete="email"
+                required
+                aria-required="true"
+                aria-describedby="email-error"
+              />
+            </div>
+            <p class="auth-form__error" id="email-error" role="alert" aria-live="polite"></p>
+          </fieldset>
+
+          <button type="submit" class="btn-primary" id="submit-btn">
+            <span class="btn-text">Enviar link de recuperação</span>
+            <span class="btn-spinner" aria-hidden="true" hidden></span>
+          </button>
+
+        </form>
+      </article>
+
+      <!-- Estado de sucesso: exibido após envio -->
+      <article id="success-state" class="success-state" hidden aria-live="polite" aria-atomic="true">
+        <span class="success-icon" aria-hidden="true">✉️</span>
+        <h2 class="success-title">Verifique seu e-mail</h2>
+        <p class="success-desc">
+          Enviamos um link de recuperação para <strong id="sent-email" class="sent-email"></strong>.
+          O link expira em <time datetime="PT15M">15 minutos</time>.
+        </p>
+        <p class="success-hint">Não recebeu? Verifique a pasta de spam ou
+          <button type="button" class="btn-link" id="resend-btn">reenviar</button>.
+        </p>
+      </article>
+
+      <footer class="auth-card__footer">
+        <p>Lembrou sua senha? <a href="../login/login.html" class="link-highlight">Fazer login</a></p>
+        <p>Não tem uma conta? <a href="../cadastro/cadastro.html" class="link-highlight">Criar conta</a></p>
+      </footer>
+
+    </section>
+  </main>
+
+  <script src="recuperar.js"></script>
+</body>
+</html>

@@ -20,7 +20,7 @@ function handleLogin() {
 }
 
 function goToStaff() {
-  window.location.href = 'staff.html';
+  window.location.href = '../staff/staff.html';
 }
 
 function isValidEmail(email) {
