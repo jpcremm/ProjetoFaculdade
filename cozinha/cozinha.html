@@ -39,7 +39,7 @@
         </div>
       </dl>
 
-      <button class="logout-btn" title="Sair" aria-label="Sair" onclick="window.location.href='../login/login.html'">⇥</button>
+      <button class="logout-btn" title="Sair" aria-label="Sair" data-action="logout">⇥</button>
     </nav>
   </header>
 
@@ -59,30 +59,7 @@
       </h2>
 
       <ol class="card-list" id="list-pendentes" aria-label="Pedidos pendentes">
-        <li class="card" id="card-7845"
-            data-nome="Carlos Silva"
-            data-itens="2 Hambúrguer Artesanal|1 Batata Frita"
-            data-endereco="Rua das Flores, 123 - Apto 45"
-            data-valor="R$ 78.90"
-            data-estado="pendente">
-          <header class="card-header">
-            <div class="card-header-left">
-              <span class="card-id">#7845</span>
-              <mark class="badge orange">🕐 Pendente</mark>
-            </div>
-            <time class="timer" datetime="PT48M">🕐 48min</time>
-          </header>
-          <p class="customer-name">👤 Carlos Silva</p>
-          <ul class="itens-list" aria-label="Itens do pedido">
-            <li class="item-row"><b class="item-qty">2</b> Hambúrguer Artesanal</li>
-            <li class="item-row"><b class="item-qty">1</b> Batata Frita</li>
-          </ul>
-          <address class="address-row">📍 Rua das Flores, 123 - Apto 45</address>
-          <footer class="card-footer">
-            <strong class="price green">R$ 78.90</strong>
-            <button class="btn orange" data-action="avancar" data-id="7845">Avançar</button>
-          </footer>
-        </li>
+
       </ol>
       <p class="empty-msg" id="empty-pendentes" role="status">Nenhum pedido pendente.</p>
     </section>
@@ -94,54 +71,7 @@
       </h2>
 
       <ol class="card-list" id="list-preparando" aria-label="Pedidos em preparo">
-        <li class="card" id="card-7844"
-            data-nome="Ana Santos"
-            data-itens="1 Pizza Margherita|2 Refrigerante"
-            data-endereco="Av. Principal, 456 - Casa"
-            data-valor="R$ 55.00"
-            data-estado="preparando">
-          <header class="card-header">
-            <div class="card-header-left">
-              <span class="card-id">#7844</span>
-              <mark class="badge blue">📦 Preparando</mark>
-            </div>
-            <time class="timer" datetime="PT54M">🕐 54min</time>
-          </header>
-          <p class="customer-name">👤 Ana Santos</p>
-          <ul class="itens-list" aria-label="Itens do pedido">
-            <li class="item-row"><b class="item-qty">1</b> Pizza Margherita</li>
-            <li class="item-row"><b class="item-qty">2</b> Refrigerante</li>
-          </ul>
-          <address class="address-row">📍 Av. Principal, 456 - Casa</address>
-          <footer class="card-footer">
-            <strong class="price green">R$ 55.00</strong>
-            <button class="btn orange" data-action="avancar" data-id="7844">Avançar</button>
-          </footer>
-        </li>
-
-        <li class="card" id="card-7843"
-            data-nome="João Oliveira"
-            data-itens="1 Sushi Combo Premium"
-            data-endereco="Rua dos Pinheiros, 789 - Apto 101"
-            data-valor="R$ 89.90"
-            data-estado="preparando">
-          <header class="card-header">
-            <div class="card-header-left">
-              <span class="card-id">#7843</span>
-              <mark class="badge blue">📦 Preparando</mark>
-            </div>
-            <time class="timer" datetime="PT58M">🕐 58min</time>
-          </header>
-          <p class="customer-name">👤 João Oliveira</p>
-          <ul class="itens-list" aria-label="Itens do pedido">
-            <li class="item-row"><b class="item-qty">1</b> Sushi Combo Premium</li>
-          </ul>
-          <address class="address-row">📍 Rua dos Pinheiros, 789 - Apto 101</address>
-          <footer class="card-footer">
-            <strong class="price green">R$ 89.90</strong>
-            <button class="btn orange" data-action="avancar" data-id="7843">Avançar</button>
-          </footer>
-        </li>
+        
       </ol>
       <p class="empty-msg" id="empty-preparando" role="status">Nenhum pedido em preparo.</p>
     </section>
@@ -153,29 +83,7 @@
       </h2>
 
       <ol class="card-list" id="list-prontos" aria-label="Pedidos prontos">
-        <li class="card" id="card-7842"
-            data-nome="Maria Costa"
-            data-itens="1 Salada Caesar|1 Suco Natural"
-            data-endereco="Praça Central, 321 - Loja"
-            data-valor="R$ 42.50"
-            data-estado="pronto">
-          <header class="card-header">
-            <div class="card-header-left">
-              <span class="card-id">#7842</span>
-              <mark class="badge green">✅ Pronto</mark>
-            </div>
-            <time class="timer" datetime="PT66M">🕐 66min</time>
-          </header>
-          <p class="customer-name">👤 Maria Costa</p>
-          <ul class="itens-list" aria-label="Itens do pedido">
-            <li class="item-row"><b class="item-qty">1</b> Salada Caesar</li>
-            <li class="item-row"><b class="item-qty">1</b> Suco Natural</li>
-          </ul>
-          <address class="address-row">📍 Praça Central, 321 - Loja</address>
-          <footer class="card-footer">
-            <strong class="price green">R$ 42.50</strong>
-          </footer>
-        </li>
+      
       </ol>
       <p class="empty-msg" id="empty-prontos" role="status">Nenhum pedido pronto.</p>
     </section>
@@ -184,6 +92,15 @@
 
   <output class="toast" id="toast" role="status" aria-live="polite"></output>
 
+  <!-- Firebase SDKs (Compat) -->
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore-compat.js"></script>
+  <!-- Configuração e serviços -->
+  <script src="../src/firebase/firebase-config.js"></script>
+  <script src="../src/firebase/auth-service.js"></script>
+  <script src="../src/firebase/db-service.js"></script>
+  <script src="../src/utils/validators.js"></script>
   <script src="cozinha.js"></script>
 </body>
 </html>

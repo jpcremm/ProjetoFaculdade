@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pedido Confirmado</title>
+  <link rel="stylesheet" href="cdp.css" />
+</head>
+<body>
+  <!-- Header com informações do usuário -->
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="header-brand">
+        <h1 class="header-title">Confirmação</h1>
+        <p class="header-subtitle">Acompanhe seu pedido</p>
+      </div>
+      <div class="header-actions">
+        <div class="header-user-info" id="userInfo" hidden>
+          <span class="user-email" id="userEmail"></span>
+          <button class="btn-logout" id="btnLogout" aria-label="Sair">Sair</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- Header: confirmação -->
+    <header>
+      <div class="check-circle">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+      </div>
+      <h1>Pedido Confirmado!</h1>
+      <p class="subtitle">Seu pedido #7842 está sendo preparado</p>
+      <div class="badge-entregue">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+        Entregue
+      </div>
+    </header>
+
+    <!-- Status de acompanhamento -->
+    <section class="card" aria-label="Status do pedido">
+
+      <div class="status-item">
+        <div class="icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+        </div>
+        <div class="status-label">Pedido recebido</div>
+        <div class="check-right">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="status-item">
+        <div class="icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+            <polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/>
+          </svg>
+        </div>
+        <div class="status-label">Em preparação</div>
+        <div class="check-right">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="status-item">
+        <div class="icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+        </div>
+        <div class="status-label">Pronto</div>
+        <div class="check-right">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="status-item">
+        <div class="icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/>
+            <circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>
+          </svg>
+        </div>
+        <div class="status-label">Saiu para entrega</div>
+        <div class="check-right">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="status-item">
+        <div class="icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+        </div>
+        <div class="status-label">
+          Entregue
+          <small>Em andamento...</small>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Itens do pedido -->
+    <section class="items-card" aria-label="Itens do pedido">
+      <h2>Itens do pedido</h2>
+
+      <div class="item-row">
+        <span>2x Hambúrguer Artesanal</span>
+        <span class="item-price">R$ 65,80</span>
+      </div>
+      <div class="item-row">
+        <span>1x Pizza Margherita</span>
+        <span class="item-price">R$ 45,00</span>
+      </div>
+      <div class="item-row">
+        <span>1x Brownie com Sorvete</span>
+        <span class="item-price">R$ 18,90</span>
+      </div>
+
+      <div class="total-row">
+        <span>Total</span>
+        <span class="total-value">R$ 137,70</span>
+      </div>
+    </section>
+
+    <!-- Botões de ação -->
+    <div class="actions">
+      <button class="btn btn-gray" id="btnCardapio">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/>
+        </svg>
+        Voltar ao cardápio
+      </button>
+      <button class="btn btn-orange" id="btnPedidos">
+        Meus pedidos
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+        </svg>
+      </button>
+    </div>
+
+  </main>
+
+  <!-- Firebase SDKs (Compat) -->
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore-compat.js"></script>
+  <!-- Configuração e serviços -->
+  <script src="../src/firebase/firebase-config.js"></script>
+  <script src="../src/firebase/auth-service.js"></script>
+  <script src="../src/firebase/db-service.js"></script>
+  <script src="../src/utils/validators.js"></script>
+  <script src="cdp.js"></script>
+</body>
+</html>

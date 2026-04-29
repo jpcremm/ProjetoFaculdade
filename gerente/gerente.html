@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard · Dark Kitchen</title>
+  <link rel="stylesheet" href="gerente.css" />
+</head>
+<body>
+
+  <!-- ════════════════════════════════════════════
+       PÁGINA: DASHBOARD
+  ════════════════════════════════════════════ -->
+  <div id="page-dashboard" class="page active">
+
+    <header class="top-bar">
+      <div class="top-bar-left">
+        <div class="top-bar-brand">
+          <h1>Dashboard</h1>
+          <p>Gestão da dark kitchen</p>
+        </div>
+      </div>
+
+      <div class="top-bar-right">
+        <nav class="filter-group" aria-label="Filtrar por período">
+          <button class="filter-btn active" data-filter="hoje"   data-action="filter">Hoje</button>
+          <button class="filter-btn"        data-filter="semana" data-action="filter">Semana</button>
+          <button class="filter-btn"        data-filter="mes"    data-action="filter">Mês</button>
+        </nav>
+
+        <button class="btn-logout" title="Sair" data-action="logout" aria-label="Sair do sistema">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+            <polyline points="16 17 21 12 16 7"/>
+            <line x1="21" y1="12" x2="9" y2="12"/>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <main>
+
+      <!-- Módulos de navegação -->
+      <section class="nav-cards" aria-label="Módulos do sistema">
+        <button class="nav-card accent" data-navigate="cardapio" aria-label="Ir para Gestão de Cardápio">
+          <div class="nav-card-badge" aria-hidden="true">
+            <span class="num">6</span>
+            <span class="lbl">Pratos ativos</span>
+          </div>
+          <div class="nav-card-icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 8h1a4 4 0 0 1 0 8h-1"/>
+              <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/>
+              <line x1="6" y1="1" x2="6" y2="4"/>
+              <line x1="10" y1="1" x2="10" y2="4"/>
+              <line x1="14" y1="1" x2="14" y2="4"/>
+            </svg>
+          </div>
+          <h2>Gestão de Cardápio</h2>
+          <p>Gerenciar pratos, categorias e disponibilidade</p>
+        </button>
+
+        <button class="nav-card accent" data-navigate="estoque" aria-label="Ir para Gestão de Estoque">
+          <div class="nav-card-badge" aria-hidden="true">
+            <span class="num">8</span>
+            <span class="lbl">Itens</span>
+          </div>
+          <div class="nav-card-icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+              <polyline points="9 22 9 12 15 12 15 22"/>
+            </svg>
+          </div>
+          <h2>Gestão de Estoque</h2>
+          <p>Controlar ingredientes e alertas de reposição</p>
+        </button>
+      </section>
+
+      <!-- KPIs / Indicadores -->
+      <section class="kpi-grid" aria-label="Indicadores do período">
+
+        <article class="kpi-card">
+          <div class="kpi-top">
+            <span class="kpi-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="12" y1="1" x2="12" y2="23"/>
+                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+              </svg>
+            </span>
+            <span class="kpi-delta up" id="kpi-fat-delta" aria-label="variação faturamento">▲ 12.5%</span>
+          </div>
+          <p class="kpi-label">Faturamento</p>
+          <p class="kpi-value" id="kpi-fat">R$ 8.450</p>
+        </article>
+
+        <article class="kpi-card">
+          <div class="kpi-top">
+            <span class="kpi-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+                <line x1="3" y1="6" x2="21" y2="6"/>
+                <path d="M16 10a4 4 0 0 1-8 0"/>
+              </svg>
+            </span>
+            <span class="kpi-delta up" id="kpi-ped-delta" aria-label="variação pedidos">▲ 8.3%</span>
+          </div>
+          <p class="kpi-label">Pedidos</p>
+          <p class="kpi-value" id="kpi-ped">142</p>
+        </article>
+
+        <article class="kpi-card">
+          <div class="kpi-top">
+            <span class="kpi-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+                <polyline points="17 6 23 6 23 12"/>
+              </svg>
+            </span>
+            <span class="kpi-delta up" id="kpi-tkt-delta" aria-label="variação ticket médio">▲ 2.1%</span>
+          </div>
+          <p class="kpi-label">Ticket Médio</p>
+          <p class="kpi-value" id="kpi-tkt">R$ 59,50</p>
+        </article>
+
+        <article class="kpi-card">
+          <div class="kpi-top">
+            <span class="kpi-icon kpi-icon--yellow" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <polyline points="12 6 12 12 16 14"/>
+              </svg>
+            </span>
+            <span class="kpi-delta down" id="kpi-tmp-delta" aria-label="variação tempo médio">▼ 5.4%</span>
+          </div>
+          <p class="kpi-label">Tempo Médio</p>
+          <p class="kpi-value" id="kpi-tmp">28 min</p>
+        </article>
+
+      </section>
+
+      <!-- Painéis inferiores -->
+      <div class="panels">
+
+        <section class="panel" aria-label="Itens mais vendidos">
+          <header class="panel-header">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-yellow" aria-hidden="true">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+            </svg>
+            <h3>Itens mais vendidos</h3>
+          </header>
+          <ol id="best-sellers" aria-label="Ranking de pratos mais vendidos"></ol>
+        </section>
+
+        <section class="panel" aria-label="Pedidos recentes">
+          <header class="panel-header">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-accent" aria-hidden="true">
+              <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+            </svg>
+            <h3>Pedidos recentes</h3>
+          </header>
+          <ul id="recent-orders" aria-label="Lista de pedidos recentes"></ul>
+        </section>
+
+      </div>
+
+      <!-- Status em tempo real — rodapé da página -->
+      <section class="status-strip" aria-label="Status operacional em tempo real">
+
+        <article class="status-card">
+          <div class="status-icon status-icon--blue" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+            </svg>
+          </div>
+          <div>
+            <p class="status-label">Na cozinha</p>
+            <p class="status-value" id="stat-cozinha">5 pedidos</p>
+          </div>
+        </article>
+
+        <article class="status-card">
+          <div class="status-icon status-icon--purple" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+              <circle cx="9" cy="7" r="4"/>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+          </div>
+          <div>
+            <p class="status-label">Em entrega</p>
+            <p class="status-value" id="stat-entrega">3 pedidos</p>
+          </div>
+        </article>
+
+        <article class="status-card">
+          <div class="status-icon status-icon--green" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+            </svg>
+          </div>
+          <div>
+            <p class="status-label">Taxa de conclusão</p>
+            <p class="status-value" id="stat-taxa">98.5%</p>
+          </div>
+        </article>
+
+      </section>
+
+    </main>
+  </div><!-- /page-dashboard -->
+
+
+  <!-- ════════════════════════════════════════════
+       PÁGINA: GESTÃO DE CARDÁPIO
+  ════════════════════════════════════════════ -->
+  <div id="page-cardapio" class="page">
+
+    <header class="top-bar">
+      <div class="top-bar-left">
+        <button class="btn-back-icon" data-navigate="dashboard" aria-label="Voltar ao Dashboard">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="15 18 9 12 15 6"/>
+          </svg>
+        </button>
+        <div class="top-bar-brand">
+          <h1>Gestão de Cardápio</h1>
+          <p id="cp-subtitle">10 pratos cadastrados</p>
+        </div>
+      </div>
+
+      <div class="header-counters" aria-label="Contadores do cardápio">
+        <div class="hcounter">
+          <p class="hcounter-label">Ativos</p>
+          <p class="hcounter-val hcounter-val--green" id="cp-ativos">10</p>
+        </div>
+        <div class="hcounter">
+          <p class="hcounter-label">Destacados</p>
+          <p class="hcounter-val hcounter-val--accent" id="cp-dest">0</p>
+        </div>
+      </div>
+    </header>
+
+    <div class="sub-wrap">
+      <div class="pill-row" role="group" aria-label="Filtrar pratos por categoria" id="cp-pills">
+        <button class="pill active" data-cat="todos"      data-page="cp">Todos</button>
+        <button class="pill"        data-cat="hamburguer" data-page="cp">Hambúrgueres</button>
+        <button class="pill"        data-cat="pizza"      data-page="cp">Pizzas</button>
+        <button class="pill"        data-cat="salada"     data-page="cp">Saladas</button>
+        <button class="pill"        data-cat="japones"    data-page="cp">Japonês</button>
+        <button class="pill"        data-cat="massa"      data-page="cp">Massas</button>
+        <button class="pill"        data-cat="sobremesa"  data-page="cp">Sobremesas</button>
+      </div>
+
+      <div class="dish-list" id="dish-list" aria-label="Lista de pratos"></div>
+    </div>
+
+    <button class="fab" data-action="new-dish" aria-label="Adicionar novo prato">+</button>
+
+  </div><!-- /page-cardapio -->
+
+
+  <!-- ════════════════════════════════════════════
+       PÁGINA: GESTÃO DE ESTOQUE
+  ════════════════════════════════════════════ -->
+  <div id="page-estoque" class="page">
+
+    <header class="top-bar">
+      <div class="top-bar-left">
+        <button class="btn-back-icon" data-navigate="dashboard" aria-label="Voltar ao Dashboard">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="15 18 9 12 15 6"/>
+          </svg>
+        </button>
+        <div class="top-bar-brand">
+          <h1>Gestão de Estoque</h1>
+          <p>8 itens cadastrados</p>
+        </div>
+      </div>
+    </header>
+
+    <div class="sub-wrap">
+      <div class="pill-row" role="group" aria-label="Filtrar itens por categoria" id="st-pills">
+        <button class="pill active" data-cat="todos"      data-page="st">Todos</button>
+        <button class="pill"        data-cat="carnes"     data-page="st">Carnes</button>
+        <button class="pill"        data-cat="laticinios" data-page="st">Laticínios</button>
+        <button class="pill"        data-cat="peixes"     data-page="st">Peixes</button>
+        <button class="pill"        data-cat="vegetais"   data-page="st">Vegetais</button>
+        <button class="pill"        data-cat="sobremesas" data-page="st">Sobremesas</button>
+        <button class="pill"        data-cat="graos"      data-page="st">Grãos</button>
+      </div>
+
+      <div class="stock-list" id="stock-list" aria-label="Lista de itens em estoque"></div>
+    </div>
+
+  </div><!-- /page-estoque -->
+
+
+  <!-- Notificação toast global -->
+  <div id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+
+  <!-- Modal: Adicionar Prato -->
+  <div id="modal-add-dish" class="modal-overlay" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-card">
+      <header class="modal-header">
+        <h2 id="modal-title">Adicionar Prato</h2>
+        <button class="modal-close" id="btn-close-modal" aria-label="Fechar modal">&times;</button>
+      </header>
+      <form id="form-add-dish" class="modal-form" novalidate>
+        <input type="hidden" id="dish-original-name" />
+        <div class="form-group">
+          <label for="dish-name">Nome do prato <span aria-label="obrigatório">*</span></label>
+          <input type="text" id="dish-name" name="nome" placeholder="Ex: Cheeseburger Clássico" required />
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="dish-classe">Classe <span aria-label="obrigatório">*</span></label>
+            <select id="dish-classe" name="classe" required>
+              <option value="" disabled selected>Selecione</option>
+              <option value="salgado">Salgado</option>
+              <option value="doce">Doce</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="dish-cat">Categoria <span aria-label="obrigatório">*</span></label>
+            <select id="dish-cat" name="cat" required>
+              <option value="" disabled selected>Selecione</option>
+              <option value="hamburguer">Hambúrguer</option>
+              <option value="pizza">Pizza</option>
+              <option value="salada">Salada</option>
+              <option value="japones">Japonês</option>
+              <option value="massa">Massa</option>
+              <option value="sobremesa">Sobremesa</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="dish-preco">Preço (R$) <span aria-label="obrigatório">*</span></label>
+            <input type="number" id="dish-preco" name="preco" placeholder="32,90" step="0.01" min="0.01" required />
+          </div>
+          <div class="form-group">
+            <label for="dish-tempo">Tempo de preparo (min) <span aria-label="obrigatório">*</span></label>
+            <input type="number" id="dish-tempo" name="tempo" placeholder="15" min="1" required />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="dish-desc">Descrição <span aria-label="obrigatório">*</span></label>
+          <textarea id="dish-desc" name="desc" rows="3" placeholder="Ex: 180g de carne angus, queijo cheddar, bacon crocante e molho especial" required></textarea>
+        </div>
+
+        <div class="modal-actions">
+          <button type="button" class="btn-secondary" id="btn-cancel-dish">Cancelar</button>
+          <button type="submit" class="btn-primary" id="btn-save-dish">Salvar Prato</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Firebase SDKs (Compat) -->
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore-compat.js"></script>
+  <!-- Configuração e serviços -->
+  <script src="../src/firebase/firebase-config.js"></script>
+  <script src="../src/firebase/auth-service.js"></script>
+  <script src="../src/utils/validators.js"></script>
+  <script src="gerente.js"></script>
+</body>
+</html>

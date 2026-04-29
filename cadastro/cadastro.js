@@ -1,19 +1,19 @@
 'use strict';
 
 /* ── Elementos ── */
-const form          = document.getElementById('signup-form');
-const submitBtn     = document.getElementById('submit-btn');
-const btnText       = submitBtn.querySelector('.btn-text');
-const btnSpinner    = submitBtn.querySelector('.btn-spinner');
+var form          = document.getElementById('signup-form');
+var submitBtn     = document.getElementById('submit-btn');
+var btnText       = submitBtn.querySelector('.btn-text');
+var btnSpinner    = submitBtn.querySelector('.btn-spinner');
 
-const fields = {
+var fields = {
   name:    document.getElementById('full-name'),
   email:   document.getElementById('email'),
   pass:    document.getElementById('password'),
   confirm: document.getElementById('confirm-password'),
 };
 
-const errors = {
+var errors = {
   name:    document.getElementById('full-name-error'),
   email:   document.getElementById('email-error'),
   pass:    document.getElementById('password-error'),
@@ -21,24 +21,24 @@ const errors = {
 };
 
 /* ── Toast ── */
-function showToast(msg, type = 'success') {
-  const existing = document.querySelector('.toast');
+function showToast(msg, type) {
+  type = type || 'success';
+  var existing = document.querySelector('.toast');
   if (existing) existing.remove();
 
-  const toast = document.createElement('output');
-  toast.className = `toast toast--${type}`;
+  var toast = document.createElement('output');
+  toast.className = 'toast toast--' + type;
   toast.setAttribute('role', 'status');
   toast.setAttribute('aria-live', 'polite');
   toast.textContent = msg;
   document.body.appendChild(toast);
 
-  // força reflow para a transição funcionar
   toast.getBoundingClientRect();
   toast.classList.add('toast--visible');
 
-  setTimeout(() => {
+  setTimeout(function() {
     toast.classList.remove('toast--visible');
-    setTimeout(() => toast.remove(), 300);
+    setTimeout(function() { toast.remove(); }, 300);
   }, 3000);
 }
 
@@ -59,7 +59,7 @@ function isValidEmail(value) {
 
 /* Valida um campo individualmente; retorna true se válido */
 function validateField(key) {
-  const val = fields[key].value.trim();
+  var val = fields[key].value.trim();
 
   if (key === 'name') {
     if (!val) { setError('name', 'Informe seu nome completo.'); return false; }
@@ -86,36 +86,29 @@ function validateField(key) {
 }
 
 /* ── Validação em tempo real (blur) ── */
-Object.keys(fields).forEach(key => {
-  fields[key].addEventListener('blur', () => validateField(key));
-  fields[key].addEventListener('input', () => {
+Object.keys(fields).forEach(function(key) {
+  fields[key].addEventListener('blur', function() { validateField(key); });
+  fields[key].addEventListener('input', function() {
     if (fields[key].getAttribute('aria-invalid')) validateField(key);
   });
 });
 
 /* ── Mostrar/ocultar senha ── */
-document.querySelectorAll('.toggle-password').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const targetId = btn.getAttribute('data-target');
-    const input    = document.getElementById(targetId);
-    const isHidden = input.type === 'password';
+document.querySelectorAll('.toggle-password').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    var targetId = btn.getAttribute('data-target');
+    var input    = document.getElementById(targetId);
+    var isHidden = input.type === 'password';
 
     input.type = isHidden ? 'text' : 'password';
     btn.setAttribute('aria-label', isHidden ? 'Ocultar senha' : 'Mostrar senha');
 
     /* Troca o ícone */
-    const svg = btn.querySelector('svg');
+    var svg = btn.querySelector('svg');
     if (isHidden) {
-      svg.innerHTML = `
-        <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/>
-        <path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/>
-        <line x1="1" y1="1" x2="23" y2="23"/>
-      `;
+      svg.innerHTML = '<path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/><path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/><line x1="1" y1="1" x2="23" y2="23"/>';
     } else {
-      svg.innerHTML = `
-        <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/>
-        <circle cx="12" cy="12" r="3"/>
-      `;
+      svg.innerHTML = '<path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/>';
     }
   });
 });
@@ -128,26 +121,53 @@ function setLoading(active) {
 }
 
 /* ── Submit ── */
-form.addEventListener('submit', async (e) => {
+form.addEventListener('submit', async function(e) {
   e.preventDefault();
 
-  const keys   = ['name', 'email', 'pass', 'confirm'];
-  const valid  = keys.map(k => validateField(k)).every(Boolean);
+  var keys   = ['name', 'email', 'pass', 'confirm'];
+  var valid  = keys.map(function(k) { return validateField(k); }).every(Boolean);
 
   if (!valid) {
-    // foca o primeiro campo inválido
-    const first = keys.find(k => fields[k].getAttribute('aria-invalid') === 'true');
+    var first = keys.find(function(k) {
+      return fields[k].getAttribute('aria-invalid') === 'true';
+    });
     if (first) fields[first].focus();
     return;
   }
 
+  var email    = fields.email.value.trim();
+  var password = fields.pass.value;
+  var fullName = fields.name.value.trim();
+
   setLoading(true);
 
-  /* Simula chamada à API */
-  await new Promise(r => setTimeout(r, 1800));
+  try {
+    var userCredential = await register(email, password);
+    var uid = userCredential.user.uid;
 
-  setLoading(false);
-  showToast('✓ Conta criada com sucesso!', 'success');
-  form.reset();
-  keys.forEach(k => clearError(k));
+    await setUserData(uid, {
+      nome: fullName,
+      email: email,
+      role: 'cliente',
+      createdAt: new Date().toISOString()
+    });
+
+    showToast('✓ Conta criada com sucesso!', 'success');
+    form.reset();
+    keys.forEach(function(k) { clearError(k); });
+
+    setTimeout(function() {
+      window.location.href = '../login/login.html';
+    }, 1500);
+
+  } catch (err) {
+    console.error('[Auth] Erro no cadastro:', err);
+    var msg = 'Erro ao criar conta. Tente novamente.';
+    if (err.code === 'auth/email-already-in-use') msg = 'Este e-mail já está cadastrado.';
+    if (err.code === 'auth/invalid-email') msg = 'E-mail inválido.';
+    if (err.code === 'auth/weak-password') msg = 'A senha é muito fraca.';
+    showToast(msg, 'error');
+  } finally {
+    setLoading(false);
+  }
 });

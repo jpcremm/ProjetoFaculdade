@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Carrinho — Dark Kitchen</title>
+  <link rel="stylesheet" href="carrinho.css" />
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header class="ch-header">
+    <div class="ch-header__inner">
+      <div class="ch-header__left">
+        <a href="../cardapio/cardapio.html" class="ch-btn-back" aria-label="Voltar ao cardápio">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M19 12H5"/><polyline points="12 19 5 12 12 5"/>
+          </svg>
+        </a>
+        <div>
+          <h1 class="ch-header__title">Carrinho</h1>
+          <p class="ch-header__subtitle" id="headerCount">0 itens</p>
+        </div>
+      </div>
+      <div class="ch-header__right" style="display:flex;align-items:center;gap:.75rem;">
+        <div class="header-user-info" id="userInfo" hidden>
+          <span class="user-email" id="userEmail"></span>
+          <button class="btn-logout" id="btnLogout" aria-label="Sair" style="background:transparent;border:1.5px solid #2a2a2a;color:#8a8a8a;padding:.35rem .8rem;border-radius:999px;font-size:.78rem;font-weight:600;cursor:pointer;">Sair</button>
+        </div>
+        <a href="../historicopedido/historicopedido.html" class="ch-btn-pedidos">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+            <line x1="16" y1="13" x2="8" y2="13"/>
+            <line x1="16" y1="17" x2="8" y2="17"/>
+          </svg>
+          Pedidos
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== MAIN ===== -->
+  <main class="ch-main" id="main">
+
+    <!-- Estado vazio -->
+    <section class="ch-empty" id="stateEmpty" aria-live="polite" hidden>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+      </svg>
+      <p class="ch-empty__title">Seu carrinho está vazio</p>
+      <p class="ch-empty__desc">Adicione pratos do cardápio para continuar</p>
+      <a href="../cardapio/cardapio.html" class="ch-btn-primary">Ver cardápio</a>
+    </section>
+
+    <!-- Conteúdo preenchido -->
+    <div class="ch-body" id="stateContent" hidden>
+
+      <!-- Endereço de entrega -->
+      <section class="ch-card" aria-label="Endereço de entrega">
+        <div class="ch-row">
+          <span class="ch-row__icon ch-row__icon--brand" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+              <circle cx="12" cy="10" r="3"/>
+            </svg>
+          </span>
+          <div class="ch-row__body">
+            <h2 class="ch-row__label">Endereço de entrega</h2>
+            <p class="ch-row__value" id="displayAddress">Rua das Flores, 123 — Apto 45</p>
+          </div>
+          <button class="ch-btn-link" id="btnAddress">Alterar</button>
+        </div>
+      </section>
+
+      <!-- Lista de itens -->
+      <section aria-label="Itens no carrinho">
+        <ul class="ch-items" id="itemsList" role="list">
+          <!-- preenchido via JS -->
+        </ul>
+      </section>
+
+      <!-- Cupom de desconto -->
+      <section class="ch-card" aria-label="Cupom de desconto">
+        <div class="ch-row">
+          <span class="ch-row__icon" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="1" y="6" width="22" height="12" rx="2"/>
+              <path d="M1 10h22"/>
+            </svg>
+          </span>
+          <div class="ch-row__body">
+            <h2 class="ch-row__label">Cupom de desconto</h2>
+            <p class="ch-row__value ch-row__value--dim" id="displayCupom">Selecionar cupom</p>
+          </div>
+          <button class="ch-btn-link" id="btnCupom">Aplicar</button>
+        </div>
+      </section>
+
+      <!-- Forma de pagamento -->
+      <section class="ch-card" aria-label="Forma de pagamento">
+        <div class="ch-row">
+          <span class="ch-row__icon" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="1" y="4" width="22" height="16" rx="2"/>
+              <line x1="1" y1="10" x2="23" y2="10"/>
+            </svg>
+          </span>
+          <div class="ch-row__body">
+            <h2 class="ch-row__label">Forma de pagamento</h2>
+            <p class="ch-row__value" id="displayPayment">Cartão</p>
+          </div>
+          <button class="ch-btn-link" id="btnPayment">Alterar</button>
+        </div>
+      </section>
+
+      <!-- Resumo do pedido -->
+      <section class="ch-card ch-summary" aria-label="Resumo do pedido">
+        <h2 class="ch-summary__title">Resumo do pedido</h2>
+        <dl class="ch-summary__list">
+          <div class="ch-summary__row">
+            <dt>Subtotal</dt>
+            <dd id="sumSubtotal">R$ 0,00</dd>
+          </div>
+          <div class="ch-summary__row ch-summary__row--discount" id="rowDiscount" hidden>
+            <dt>Desconto</dt>
+            <dd id="sumDiscount">— R$ 0,00</dd>
+          </div>
+          <div class="ch-summary__row">
+            <dt>Taxa de entrega</dt>
+            <dd id="sumDelivery">R$ 8,00</dd>
+          </div>
+          <div class="ch-summary__row ch-summary__row--total">
+            <dt>Total</dt>
+            <dd id="sumTotal">R$ 0,00</dd>
+          </div>
+        </dl>
+      </section>
+
+    </div><!-- /ch-body -->
+  </main>
+
+  <!-- ===== FOOTER FIXO ===== -->
+  <footer class="ch-footer" id="footer" hidden>
+    <button class="ch-btn-checkout" id="btnCheckout">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+        <line x1="3" y1="6" x2="21" y2="6"/>
+        <path d="M16 10a4 4 0 0 1-8 0"/>
+      </svg>
+      Finalizar pedido
+    </button>
+  </footer>
+
+  <!-- ===== MODAL: Endereço ===== -->
+  <div class="ch-overlay" id="modalAddress" role="dialog" aria-modal="true" aria-labelledby="titleAddress" hidden>
+    <div class="ch-modal">
+      <header class="ch-modal__header">
+        <h2 class="ch-modal__title" id="titleAddress">Endereço de entrega</h2>
+        <button class="ch-modal__close" data-close="modalAddress" aria-label="Fechar">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+      </header>
+      <div class="ch-modal__body">
+        <fieldset class="ch-form">
+          <legend class="sr-only">Dados do endereço</legend>
+          <div class="ch-form__group">
+            <label for="inputRua" class="ch-form__label">Rua</label>
+            <input type="text" id="inputRua" class="ch-form__input" placeholder="Ex: Rua das Flores" value="Rua das Flores" />
+          </div>
+          <div class="ch-form__row">
+            <div class="ch-form__group">
+              <label for="inputNum" class="ch-form__label">Número</label>
+              <input type="text" id="inputNum" class="ch-form__input" placeholder="123" value="123" />
+            </div>
+            <div class="ch-form__group">
+              <label for="inputComp" class="ch-form__label">Complemento</label>
+              <input type="text" id="inputComp" class="ch-form__input" placeholder="Apto 45" value="Apto 45" />
+            </div>
+          </div>
+          <button type="button" class="ch-btn-primary ch-btn-primary--full" id="btnSaveAddress">Salvar endereço</button>
+        </fieldset>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== MODAL: Cupom ===== -->
+  <div class="ch-overlay" id="modalCupom" role="dialog" aria-modal="true" aria-labelledby="titleCupom" hidden>
+    <div class="ch-modal">
+      <header class="ch-modal__header">
+        <h2 class="ch-modal__title" id="titleCupom">Selecionar cupom</h2>
+        <button class="ch-modal__close" data-close="modalCupom" aria-label="Fechar">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+      </header>
+      <div class="ch-modal__body">
+        <ul class="ch-cupom-list" role="list">
+          <li>
+            <button class="ch-cupom-option" data-discount="25" data-min="60" data-label="Sexta Premium — 25% OFF">
+              <div class="ch-cupom-badge">
+                <span class="ch-cupom-badge__pct">25%</span>
+                <span class="ch-cupom-badge__off">OFF</span>
+              </div>
+              <div class="ch-cupom-info">
+                <h3 class="ch-cupom-info__name">Sexta Premium</h3>
+                <p class="ch-cupom-info__desc">25% OFF em pedidos acima de R$ 60,00</p>
+                <p class="ch-cupom-info__meta">Válido hoje</p>
+              </div>
+              <svg class="ch-cupom-check" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                   stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+            </button>
+          </li>
+        </ul>
+        <button class="ch-btn-ghost" id="btnRemoveCupom">Remover cupom</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== MODAL: Pagamento ===== -->
+  <div class="ch-overlay" id="modalPayment" role="dialog" aria-modal="true" aria-labelledby="titlePayment" hidden>
+    <div class="ch-modal">
+      <header class="ch-modal__header">
+        <h2 class="ch-modal__title" id="titlePayment">Forma de pagamento</h2>
+        <button class="ch-modal__close" data-close="modalPayment" aria-label="Fechar">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+      </header>
+      <div class="ch-modal__body">
+        <ul class="ch-payment-list" role="list">
+          <li>
+            <button class="ch-payment-option" data-method="Cartão de crédito">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+              Cartão de crédito
+              <svg class="ch-payment-check" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            </button>
+          </li>
+          <li>
+            <button class="ch-payment-option" data-method="Cartão de débito">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+              Cartão de débito
+              <svg class="ch-payment-check" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            </button>
+          </li>
+          <li>
+            <button class="ch-payment-option" data-method="Pix">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4.93 4.93 4.24 4.24"/><path d="m14.83 9.17 4.24-4.24"/><path d="m14.83 14.83 4.24 4.24"/><path d="m9.17 14.83-4.24 4.24"/><circle cx="12" cy="12" r="4"/></svg>
+              Pix
+              <svg class="ch-payment-check" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            </button>
+          </li>
+          <li>
+            <button class="ch-payment-option" data-method="Dinheiro">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2"/><path d="M6 12h.01M18 12h.01"/></svg>
+              Dinheiro
+              <svg class="ch-payment-check" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Firebase SDKs (Compat) -->
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore-compat.js"></script>
+  <!-- Configuração e serviços -->
+  <script src="../src/firebase/firebase-config.js"></script>
+  <script src="../src/firebase/auth-service.js"></script>
+  <script src="../src/firebase/db-service.js"></script>
+  <script src="../src/utils/validators.js"></script>
+  <script src="carrinho.js"></script>
+</body>
+</html>

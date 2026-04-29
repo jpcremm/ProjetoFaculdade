@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Profit Brain Delivery – Cardápio</title>
+  <link rel="stylesheet" href="cardapio.css" />
+</head>
+<body>
+
+  <!-- ════════════════════════════════════════
+       HEADER FIXO
+       ════════════════════════════════════════ -->
+  <header class="site-header" role="banner">
+    <div class="header-inner">
+
+      <!-- Marca / título -->
+      <div class="header-brand">
+        <h1 class="header-title">Cardápio</h1>
+        <p class="header-subtitle">Escolha seus pratos favoritos</p>
+      </div>
+
+      <!-- Ações do header -->
+      <div class="header-actions">
+
+        <!-- Info do usuário logado (oculto até autenticar) -->
+        <div class="header-user-info" id="userInfo" hidden>
+          <span class="user-email" id="userEmail"></span>
+          <button class="btn-logout" id="btnLogout" aria-label="Sair da conta">Sair</button>
+        </div>
+
+        <!-- Ícone: Carrinho -->
+        <a href="../carrinho/carrinho.html" class="btn-icon" id="btnNavCarrinho" aria-label="Ver carrinho">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="9" cy="21" r="1"/>
+            <circle cx="20" cy="21" r="1"/>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+          </svg>
+        </a>
+
+        <!-- Ícone: Pedidos -->
+        <a href="../historicopedido/historicopedido.html" class="btn-icon" id="btnNavPedidos" aria-label="Ver histórico de pedidos">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+            <line x1="16" y1="13" x2="8" y2="13"/>
+            <line x1="16" y1="17" x2="8" y2="17"/>
+          </svg>
+        </a>
+
+        <!-- Ícone: Cupons -->
+        <button class="btn-icon btn-icon--badge" id="btnCupons" aria-label="Ver cupons de desconto">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="1" y="6" width="22" height="12" rx="2"/>
+            <path d="M1 10h22"/>
+          </svg>
+          <span class="icon-badge" id="cuponsBadge" aria-label="1 cupom disponível">1</span>
+        </button>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- ════════════════════════════════════════
+       CONTEÚDO PRINCIPAL
+       ════════════════════════════════════════ -->
+  <main class="site-main" id="mainContent">
+
+    <!-- ── Busca ── -->
+    <section class="search-section" aria-label="Busca de pratos">
+      <div class="search-wrapper">
+        <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="11" cy="11" r="8"/>
+          <path d="m21 21-4.35-4.35"/>
+        </svg>
+        <input
+          type="search"
+          class="search-input"
+          id="searchInput"
+          placeholder="Buscar pratos..."
+          aria-label="Buscar pratos no cardápio"
+          autocomplete="off"
+        />
+      </div>
+    </section>
+
+    <!-- ── Filtros: categorias + ordenação ── -->
+    <div class="controls-row">
+
+      <nav class="categories-nav" aria-label="Categorias do cardápio">
+        <ul class="categories-list" role="list">
+          <li><button class="category-btn active" data-category="todos">Todos</button></li>
+          <li><button class="category-btn" data-category="sobremesas">Sobremesas</button></li>
+          <li><button class="category-btn" data-category="saladas">Saladas</button></li>
+          <li><button class="category-btn" data-category="hamburgueres">Hambúrgueres</button></li>
+          <li><button class="category-btn" data-category="pizzas">Pizzas</button></li>
+          <li><button class="category-btn" data-category="japones">Japonês</button></li>
+          <li><button class="category-btn" data-category="massas">Massas</button></li>
+        </ul>
+      </nav>
+
+      <div class="sort-wrapper">
+        <label for="sortSelect" class="sort-label">Ordenar</label>
+        <select id="sortSelect" class="sort-select" aria-label="Ordenar pratos por">
+          <option value="default">Relevância</option>
+          <option value="price-asc">Menor preço</option>
+          <option value="price-desc">Maior preço</option>
+          <option value="name-asc">A-Z</option>
+          <option value="time-asc">Menor tempo</option>
+        </select>
+      </div>
+
+    </div>
+
+    <!-- ── Grade de pratos ── -->
+    <section aria-label="Lista de pratos">
+      <ul class="menu-grid" id="menuGrid" role="list">
+
+        <!-- ─ Item 1: Brownie com Sorvete ─ -->
+        <li class="menu-card" data-category="sobremesas" data-id="1"
+            data-name="Brownie com Sorvete" data-price="18.90">
+          <article>
+            <div class="card-image-wrap">
+              <img
+                src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=600&auto=format&fit=crop&q=80"
+                alt="Brownie de chocolate belga com sorvete de baunilha"
+                class="card-image" loading="lazy"
+              />
+              <span class="badge badge--highlight">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                  <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+                  <polyline points="17 6 23 6 23 12"/>
+                </svg>
+                Melhor margem
+              </span>
+              <span class="badge badge--time">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <circle cx="12" cy="12" r="10"/>
+                  <polyline points="12 6 12 12 16 14"/>
+                </svg>
+                10 min
+              </span>
+            </div>
+            <div class="card-body">
+              <h2 class="card-title">Brownie com Sorvete</h2>
+              <p class="card-desc">Brownie de chocolate belga com sorvete de baunilha</p>
+              <div class="card-footer">
+                <span class="card-price">R$ 18,90</span>
+                <div class="qty-control" data-id="1" aria-label="Quantidade de Brownie com Sorvete" style="display:none;">
+                  <button class="qty-btn qty-minus" aria-label="Diminuir quantidade">−</button>
+                  <span class="qty-value" aria-live="polite">1</span>
+                  <button class="qty-btn qty-plus" aria-label="Aumentar quantidade">+</button>
+                </div>
+                <button class="btn-add" aria-label="Adicionar Brownie com Sorvete ao carrinho">Adicionar</button>
+              </div>
+            </div>
+          </article>
+        </li>
+
+        <!-- ─ Item 2: Salada Caesar ─ -->
+        <li class="menu-card" data-category="saladas" data-id="2"
+            data-name="Salada Caesar" data-price="28.50">
+          <article>
+            <div class="card-image-wrap">
+              <img
+                src="https://images.unsplash.com/photo-1550304943-4f24f54ddde9?w=600&auto=format&fit=crop&q=80"
+                alt="Salada Caesar com alface romana, croutons e parmesão"
+                class="card-image" loading="lazy"
+              />
+              <span class="badge badge--time">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <circle cx="12" cy="12" r="10"/>
+                  <polyline points="12 6 12 12 16 14"/>
+                </svg>
+                8 min
+              </span>
+            </div>
+            <div class="card-body">
+              <h2 class="card-title">Salada Caesar</h2>
+              <p class="card-desc">Alface romana, croutons, parmesão e molho caesar</p>
+              <div class="card-footer">
+                <span class="card-price">R$ 28,50</span>
+                <div class="qty-control" data-id="2" aria-label="Quantidade de Salada Caesar" style="display:none;">
+                  <button class="qty-btn qty-minus" aria-label="Diminuir quantidade">−</button>
+                  <span class="qty-value" aria-live="polite">1</span>
+                  <button class="qty-btn qty-plus" aria-label="Aumentar quantidade">+</button>
+                </div>
+                <button class="btn-add" aria-label="Adicionar Salada Caesar ao carrinho">Adicionar</button>
+              </div>
+            </div>
+          </article>
+        </li>
+
+        <!-- ─ Item 3: Hambúrguer Artesanal ─ -->
+        <li class="menu-card" data-category="hamburgueres" data-id="3"
+            data-name="Hambúrguer Artesanal" data-price="32.90">
+          <article>
+            <div class="card-image-wrap">
+              <img
+                src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600&auto=format&fit=crop&q=80"
+                alt="Hambúrguer artesanal com carne angus, queijo cheddar e bacon crocante"
+                class="card-image" loading="lazy"
+              />
+              <span class="badge badge--highlight">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                  <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                  <line x1="12" y1="9" x2="12" y2="13"/>
+                  <line x1="12" y1="17" x2="12.01" y2="17"/>
+                </svg>
+                Mais pedido
+              </span>
+              <span class="badge badge--time">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <circle cx="12" cy="12" r="10"/>
+                  <polyline points="12 6 12 12 16 14"/>
+                </svg>
+                15 min
+              </span>
+            </div>
+            <div class="card-body">
+              <h2 class="card-title">Hambúrguer Artesanal</h2>
+              <p class="card-desc">Carne angus, queijo cheddar, bacon crocante e molho especial</p>
+              <div class="card-footer">
+                <span class="card-price">R$ 32,90</span>
+                <div class="qty-control" data-id="3" aria-label="Quantidade de Hambúrguer Artesanal" style="display:none;">
+                  <button class="qty-btn qty-minus" aria-label="Diminuir quantidade">−</button>
+                  <span class="qty-value" aria-live="polite">1</span>
+                  <button class="qty-btn qty-plus" aria-label="Aumentar quantidade">+</button>
+                </div>
+                <button class="btn-add" aria-label="Adicionar Hambúrguer Artesanal ao carrinho">Adicionar</button>
+              </div>
+            </div>
+          </article>
+        </li>
+
+        <!-- ─ Item 4: Pizza Margherita ─ -->
+        <li class="menu-card" data-category="pizzas" data-id="4"
+            data-name="Pizza Margherita" data-price="45.00">
+          <article>
+            <div class="card-image-wrap">
+              <img
+                src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=600&auto=format&fit=crop&q=80"
+                alt="Pizza Margherita com molho de tomate, mussarela e manjericão fresco"
+                class="card-image" loading="lazy"
+              />
+              <span class="badge badge--time">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <circle cx="12" cy="12" r="10"/>
+                  <polyline points="12 6 12 12 16 14"/>
+                </svg>
+                20 min
+              </span>
+            </div>
+            <div class="card-body">
+              <h2 class="card-title">Pizza Margherita</h2>
+              <p class="card-desc">Molho de tomate, mussarela fresca e manjericão</p>
+              <div class="card-footer">
+                <span class="card-price">R$ 45,00</span>
+                <div class="qty-control" data-id="4" aria-label="Quantidade de Pizza Margherita" style="display:none;">
+                  <button class="qty-btn qty-minus" aria-label="Diminuir quantidade">−</button>
+                  <span class="qty-value" aria-live="polite">1</span>
+                  <button class="qty-btn qty-plus" aria-label="Aumentar quantidade">+</button>
+                </div>
+                <button class="btn-add" aria-label="Adicionar Pizza Margherita ao carrinho">Adicionar</button>
+              </div>
+            </div>
+          </article>
+        </li>
+
+        <!-- ─ Item 5: Sushi Combo Premium ─ -->
+        <li class="menu-card" data-category="japones" data-id="5"
+            data-name="Sushi Combo Premium" data-price="89.90">
+          <article>
+            <div class="card-image-wrap">
+              <img
+                src="https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=600&auto=format&fit=crop&q=80"
+                alt="Combo de sushi premium com 20 peças variadas"
+                class="card-image" loading="lazy"
+              />
+              <span class="badge badge--time">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <circle cx="12" cy="12" r="10"/>
+                  <polyline points="12 6 12 12 16 14"/>
+                </svg>
+                25 min
+              </span>
+            </div>
+            <div class="card-body">
+              <h2 class="card-title">Sushi Combo Premium</h2>
+              <p class="card-desc">20 peças variadas com salmão, atum e camarão</p>
+              <div class="card-footer">
+                <span class="card-price">R$ 89,90</span>
+                <div class="qty-control" data-id="5" aria-label="Quantidade de Sushi Combo Premium" style="display:none;">
+                  <button class="qty-btn qty-minus" aria-label="Diminuir quantidade">−</button>
+                  <span class="qty-value" aria-live="polite">1</span>
+                  <button class="qty-btn qty-plus" aria-label="Aumentar quantidade">+</button>
+                </div>
+                <button class="btn-add" aria-label="Adicionar Sushi Combo Premium ao carrinho">Adicionar</button>
+              </div>
+            </div>
+          </article>
+        </li>
+
+        <!-- ─ Item 6: Risoto de Funghi ─ -->
+        <li class="menu-card" data-category="massas" data-id="6"
+            data-name="Risoto de Funghi" data-price="42.00">
+          <article>
+            <div class="card-image-wrap">
+              <img
+                src="https://images.unsplash.com/photo-1476124369491-e7addf5db371?w=600&auto=format&fit=crop&q=80"
+                alt="Risoto de funghi com cogumelos frescos e parmesão"
+                class="card-image" loading="lazy"
+              />
+              <span class="badge badge--time">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <circle cx="12" cy="12" r="10"/>
+                  <polyline points="12 6 12 12 16 14"/>
+                </svg>
+                30 min
+              </span>
+            </div>
+            <div class="card-body">
+              <h2 class="card-title">Risoto de Funghi</h2>
+              <p class="card-desc">Cogumelos frescos, vinho branco e parmesão gratinado</p>
+              <div class="card-footer">
+                <span class="card-price">R$ 42,00</span>
+                <div class="qty-control" data-id="6" aria-label="Quantidade de Risoto de Funghi" style="display:none;">
+                  <button class="qty-btn qty-minus" aria-label="Diminuir quantidade">−</button>
+                  <span class="qty-value" aria-live="polite">1</span>
+                  <button class="qty-btn qty-plus" aria-label="Aumentar quantidade">+</button>
+                </div>
+                <button class="btn-add" aria-label="Adicionar Risoto de Funghi ao carrinho">Adicionar</button>
+              </div>
+            </div>
+          </article>
+        </li>
+
+      </ul>
+
+      <!-- Estado vazio (exibido via JS quando nenhum item corresponde à busca) -->
+      <p class="state-empty" id="stateEmpty" hidden aria-live="polite">
+        Nenhum prato encontrado para sua busca.
+      </p>
+
+    </section>
+
+  </main>
+
+  <!-- ════════════════════════════════════════
+       OVERLAY: MODAL DE CUPONS
+       ════════════════════════════════════════ -->
+  <div class="ch-overlay" id="modalCupons" role="dialog" aria-modal="true"
+       aria-labelledby="modalCuponsTitle" hidden>
+    <div class="ch-modal">
+
+      <div class="ch-modal__header">
+        <h2 class="ch-modal__title" id="modalCuponsTitle">Cupons</h2>
+        <button class="ch-modal__close" data-close="modalCupons" aria-label="Fechar modal de cupons">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="18" y1="6" x2="6" y2="18"/>
+            <line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="ch-modal__body">
+
+        <!-- Oferta especial -->
+        <section class="cupom-promo" aria-label="Oferta especial de cupons">
+          <div class="cupom-promo-inner">
+            <div class="cupom-promo-icon" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                   stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="8" width="18" height="4" rx="1"/>
+                <path d="M12 8v13"/>
+                <path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/>
+                <path d="M7.5 8a2.5 2.5 0 0 1 0-5A4.8 8 0 0 1 12 8a4.8 8 0 0 1 4.5-5 2.5 2.5 0 0 1 0 5"/>
+              </svg>
+            </div>
+            <div class="cupom-promo-text">
+              <span class="cupom-promo-label">Oferta Especial</span>
+              <h3 class="cupom-promo-title">Pacote de Cupons</h3>
+              <p class="cupom-promo-desc">Garanta cupons extras para usar quando quiser</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Cupons disponíveis hoje -->
+        <section class="cupons-section" aria-label="Cupons disponíveis hoje">
+          <h3 class="cupons-section-title">
+            <span class="cupons-dot cupons-dot--active" aria-hidden="true"></span>
+            Disponíveis hoje
+          </h3>
+          <ul class="cupons-list" role="list">
+            <li class="cupom-item cupom-item--available">
+              <div class="cupom-icon-wrap" aria-hidden="true">
+                <span class="cupom-discount">
+                  <span class="cupom-percent">25%</span>
+                </span>
+              </div>
+              <div class="cupom-details">
+                <h4 class="cupom-name">Sexta Premium</h4>
+                <p class="cupom-desc">25% de desconto às sextas-feiras</p>
+                <span class="cupom-tag">PREMIUM</span>
+              </div>
+              <button class="btn-resgatar" aria-label="Resgatar cupom Sexta Premium">Resgatar</button>
+            </li>
+          </ul>
+        </section>
+
+        <!-- Cupons já resgatados -->
+        <section class="cupons-section" aria-label="Cupons já resgatados">
+          <h3 class="cupons-section-title">Cupons resgatados</h3>
+          <ul class="cupons-list" role="list">
+            <li class="cupom-item cupom-item--redeemed">
+              <div class="cupom-icon-wrap cupom-icon-wrap--redeemed" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20 6 9 17 4 12"/>
+                </svg>
+              </div>
+              <div class="cupom-details">
+                <h4 class="cupom-name">Terça Top</h4>
+                <p class="cupom-desc">Economize na terça-feira</p>
+                <p class="cupom-meta">Resgatado</p>
+              </div>
+            </li>
+          </ul>
+        </section>
+
+        <!-- Próximos cupons -->
+        <section class="cupons-section" aria-label="Próximos cupons">
+          <h3 class="cupons-section-title">Próximos cupons</h3>
+          <ul class="cupons-list" role="list">
+            <li class="cupom-item cupom-item--locked">
+              <div class="cupom-icon-wrap cupom-icon-wrap--locked" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                </svg>
+              </div>
+              <div class="cupom-details">
+                <h4 class="cupom-name">Segunda Feliz</h4>
+                <p class="cupom-desc">Desconto especial para começar a semana</p>
+                <p class="cupom-meta">Disponível Segunda</p>
+              </div>
+            </li>
+          </ul>
+        </section>
+
+      </div><!-- /.ch-modal__body -->
+    </div><!-- /.ch-modal -->
+  </div><!-- /.ch-overlay -->
+
+  <!-- ════════════════════════════════════════
+       TOAST DO CARRINHO
+       ════════════════════════════════════════ -->
+  <div class="cart-toast" id="cartToast" role="status" aria-live="polite" hidden>
+    <button class="cart-toast-inner" aria-label="Ver carrinho">
+      <svg class="cart-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="9" cy="21" r="1"/>
+        <circle cx="20" cy="21" r="1"/>
+        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+      </svg>
+      <div class="cart-info">
+        <span class="cart-items-count" id="cartCount">0 itens</span>
+        <span class="cart-label">Ver carrinho</span>
+      </div>
+      <span class="cart-total" id="cartTotal">R$ 0,00</span>
+    </button>
+  </div>
+
+  <!-- ════════════════════════════════════════
+       SCRIPTS — Firebase + App
+       ════════════════════════════════════════ -->
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore-compat.js"></script>
+  <script src="../src/firebase/firebase-config.js"></script>
+  <script src="../src/firebase/auth-service.js"></script>
+  <script src="../src/firebase/db-service.js"></script>
+  <script src="../src/utils/validators.js"></script>
+  <script src="cardapio.js"></script>
+
+</body>
+</html>

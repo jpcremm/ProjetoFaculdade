@@ -1,0 +1,396 @@
+/* ── Variáveis globais ── */
+:root {
+  --bg: #111111;
+  --card: #1e1e1e;
+  --card-border: #2a2a2a;
+  --orange: #f05c2e;
+  --orange-hover: #d94d20;
+  --green: #2ecc8f;
+  --text: #f0f0f0;
+  --muted: #888;
+  --gray-btn: #2c2c2c;
+  --gray-btn-hover: #3a3a3a;
+}
+
+/* ── Reset ── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ── Body ── */
+body {
+  background: var(--bg);
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 48px 16px 60px;
+  background-image: radial-gradient(ellipse at 50% 0%, rgba(240,92,46,0.06) 0%, transparent 60%);
+}
+
+/* ── Header do site (usuário) ── */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: var(--bg);
+  border-bottom: 1px solid var(--card-border);
+  padding: 1rem 1.5rem;
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.header-brand {
+  display: flex;
+  flex-direction: column;
+  gap: .05rem;
+}
+
+.header-title {
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  font-size: 1.2rem;
+  font-weight: 800;
+  letter-spacing: -.02em;
+  text-align: left;
+}
+
+.header-subtitle {
+  font-size: .75rem;
+  color: var(--muted);
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+}
+
+.header-user-info {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+}
+
+.user-email {
+  font-size: .82rem;
+  color: var(--muted);
+  max-width: 140px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.btn-logout {
+  background: transparent;
+  border: 1.5px solid var(--card-border);
+  color: var(--muted);
+  padding: .35rem .8rem;
+  border-radius: 999px;
+  font-size: .78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color .2s, color .2s;
+}
+
+.btn-logout:hover {
+  border-color: var(--orange);
+  color: var(--orange);
+}
+
+/* ── Layout principal ── */
+main {
+  width: 100%;
+  max-width: 620px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  animation: fadeUp 0.6s ease both;
+  margin-top: 80px;
+}
+
+/* ── Animações ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes popIn {
+  from { opacity: 0; transform: scale(0.5); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* ── Header ── */
+header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  animation: fadeUp 0.6s 0.05s ease both;
+}
+
+/* Ícone de check superior — sem sombra/brilho */
+.check-circle {
+  width: 68px;
+  height: 68px;
+  background: var(--green);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: popIn 0.5s 0.2s cubic-bezier(.34,1.56,.64,1) both;
+}
+
+.check-circle svg {
+  width: 32px;
+  height: 32px;
+  stroke: #fff;
+}
+
+h1 {
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  font-size: 1.6rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  text-align: center;
+}
+
+.subtitle {
+  color: var(--muted);
+  font-size: 0.92rem;
+  text-align: center;
+}
+
+.badge-entregue {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1.5px solid var(--card-border);
+  border-radius: 999px;
+  padding: 6px 16px;
+  font-size: 0.82rem;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+.badge-entregue svg {
+  width: 14px;
+  height: 14px;
+  stroke: var(--muted);
+}
+
+/* ── Card de status ── */
+.card {
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: 18px;
+  overflow: hidden;
+  animation: fadeUp 0.6s 0.15s ease both;
+}
+
+.status-item {
+  display: flex;
+  align-items: center;
+  padding: 18px 22px;
+  border-bottom: 1px solid var(--card-border);
+  transition: background 0.2s;
+}
+
+.status-item:last-child {
+  border-bottom: none;
+}
+
+.status-item:hover {
+  background: rgba(255,255,255,0.02);
+}
+
+/* Ícone laranja à esquerda */
+.icon-wrap {
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  background: var(--orange);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 16px;
+  transition: transform 0.2s;
+}
+
+.status-item:hover .icon-wrap {
+  transform: scale(1.07);
+}
+
+.icon-wrap svg {
+  width: 20px;
+  height: 20px;
+  stroke: #fff;
+}
+
+/* Texto do status */
+.status-label {
+  font-size: 0.97rem;
+  font-weight: 500;
+  flex: 1;
+}
+
+.status-label small {
+  display: block;
+  color: var(--orange);
+  font-size: 0.78rem;
+  font-weight: 400;
+  margin-top: 2px;
+}
+
+/* Check verde à direita */
+.check-right {
+  width: 26px;
+  height: 26px;
+  border: 2px solid var(--green);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.check-right svg {
+  width: 13px;
+  height: 13px;
+  stroke: var(--green);
+}
+
+/* ── Card de itens ── */
+.items-card {
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: 18px;
+  padding: 22px;
+  animation: fadeUp 0.6s 0.25s ease both;
+}
+
+.items-card h2 {
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 16px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.item-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--card-border);
+  font-size: 0.88rem;
+  color: #ccc;
+}
+
+.item-row:last-of-type {
+  border-bottom: none;
+}
+
+.item-price {
+  color: var(--text);
+  font-weight: 500;
+}
+
+.total-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 16px;
+  margin-top: 4px;
+  border-top: 1px solid var(--card-border);
+}
+
+.total-row span:first-child {
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  font-weight: 700;
+  font-size: 0.97rem;
+}
+
+.total-value {
+  color: var(--orange);
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  font-weight: 800;
+  font-size: 1.15rem;
+}
+
+/* ── Botões de ação ── */
+.actions {
+  display: flex;
+  gap: 12px;
+  animation: fadeUp 0.6s 0.35s ease both;
+}
+
+.btn {
+  flex: 1;
+  padding: 15px 20px;
+  border-radius: 14px;
+  border: none;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  font-size: 0.92rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.15s, background 0.2s, box-shadow 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn svg {
+  width: 16px;
+  height: 16px;
+  stroke: currentColor;
+}
+
+/* Botão cinza — Voltar ao cardápio */
+.btn-gray {
+  background: var(--gray-btn);
+  color: #ccc;
+  border: 1px solid var(--card-border);
+}
+
+.btn-gray:hover {
+  background: var(--gray-btn-hover);
+  color: #fff;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+
+/* Botão laranja — Meus pedidos (sem glow) */
+.btn-orange {
+  background: var(--orange);
+  color: #fff;
+}
+
+.btn-orange:hover {
+  background: var(--orange-hover);
+  transform: translateY(-1px);
+}
+
+/* ── Responsividade ── */
+@media (max-width: 420px) {
+  h1 { font-size: 1.3rem; }
+  .actions { flex-direction: column; }
+}

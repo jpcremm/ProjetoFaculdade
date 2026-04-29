@@ -1,9 +1,9 @@
 'use strict';
 
 /* ── Elementos ── */
-const form         = document.getElementById('recovery-form');
-const submitBtn    = document.getElementById('submit-btn');
-const btnText      = submitBtn.querySelector('.btn-text');
+var form         = document.getElementById('recovery-form');
+var submitBtn    = document.getElementById('submit-btn');
+var btnText      = submitBtn.querySelector('.btn-text');
 const btnSpinner   = submitBtn.querySelector('.btn-spinner');
 const emailInput   = document.getElementById('email');
 const emailError   = document.getElementById('email-error');

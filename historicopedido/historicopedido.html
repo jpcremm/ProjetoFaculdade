@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Meus Pedidos</title>
+  <link rel="stylesheet" href="historicopedido.css" />
+</head>
+<body>
+
+  <!-- ── Cabeçalho fixo ── -->
+  <header class="site-header" role="banner">
+    <div class="header-inner">
+      <div class="header-left">
+        <button class="btn-back" id="btnBack" aria-label="Voltar">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="19" y1="12" x2="5" y2="12"/>
+            <polyline points="12 19 5 12 12 5"/>
+          </svg>
+        </button>
+        <div class="header-brand">
+          <h1 class="header-title">Meus Pedidos</h1>
+          <p class="header-subtitle">Acompanhe seus pedidos</p>
+        </div>
+      </div>
+      <nav class="header-nav" aria-label="Navegação principal">
+        <a href="#" class="btn-cardapio" id="btnCardapio">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M3 11l19-9-9 19-2-8-8-2z"/>
+          </svg>
+          Cardápio
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ── Conteúdo principal ── -->
+  <main class="main-content" id="mainContent">
+
+    <!-- Seção: Em andamento -->
+    <section class="orders-section" aria-labelledby="sectionActive">
+      <h2 class="section-title" id="sectionActive">
+        <span class="dot dot--active" aria-hidden="true"></span>
+        Em andamento
+      </h2>
+
+      <ul class="orders-list" id="activeList" role="list">
+        <!-- Preenchido via JS -->
+      </ul>
+    </section>
+
+    <!-- Seção: Pedidos anteriores -->
+    <section class="orders-section" aria-labelledby="sectionPast">
+      <h2 class="section-title" id="sectionPast">Pedidos anteriores</h2>
+
+      <ul class="orders-list" id="pastList" role="list">
+        <!-- Preenchido via JS -->
+      </ul>
+    </section>
+
+  </main>
+
+  <script src="historicopedido.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const btnBack = document.getElementById('btnBack');
+      const btnCardapio = document.getElementById('btnCardapio');
+      
+      if (btnBack) {
+        btnBack.addEventListener('click', function() {
+          window.history.back();
+        });
+      }
+      
+      if (btnCardapio) {
+        btnCardapio.addEventListener('click', function(e) {
+          e.preventDefault();
+          window.location.href = '../cardapio/cardapio.html';
+        });
+      }
+    });
+  </script>
+
+</body>
+</html>

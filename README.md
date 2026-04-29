@@ -1,101 +1,118 @@
-# Profit Brain Delivery 🍔
+# Profit Brain Delivery 🍔🚀
 
-Sistema de pedidos e gestão para **Dark Kitchen** desenvolvido como projeto acadêmico.
+**Sistema completo de delivery e gestão de Dark Kitchen** desenvolvido como projeto acadêmico. Funciona 100% offline com fallbacks e integra com Firebase para dados em tempo real.
 
 ---
 
-## Estrutura do Projeto
+## 🎯 **Visão Geral**
+
+Aplicação web **full-stack frontend** para:
+- **Clientes**: Cardápio → Carrinho → Pedido + histórico.
+- **Staff**: Painéis role-based (Cozinha, Entregador, Gerente).
+
+**Zero dependências** – abre direto no navegador!
+
+---
+
+## 📁 **Estrutura do Projeto**
 
 ```
 projeto.faculdade/
-├── index.html                    ← Ponto de entrada (redireciona para login)
-├── login/                        ← Portal do cliente
-│   ├── login.html
-│   ├── login.css
-│   └── login.js
-├── cadastro/                     ← Criação de conta
-│   ├── cadastro.html
-│   ├── cadastro.css
-│   └── cadastro.js
-├── recuperar senha/              ← Recuperação de senha
-│   ├── recuperar.html
-│   ├── recuperar.css
-│   └── recuperar.js
-├── staff/                        ← Seleção de perfil (funcionários)
-│   ├── staff.html
-│   ├── staff.css
-│   └── staff.js
-├── cozinha/                      ← Kanban de pedidos
-│   ├── cozinha.html
-│   ├── cozinha.css
-│   └── cozinha.js
-└── entregador/                   ← Gestão de entregas
-    ├── entregador.html
-    ├── entregador.css
-    └── entregador.js
+├── index.html                 # Auto-redirect → login
+├── README.md                  # Este arquivo!
+├── src/
+│   ├── firebase/              # Config + Auth/DB services
+│   │   ├── firebase-config.js
+│   │   ├── auth-service.js
+│   │   └── db-service.js
+│   └── utils/
+│       └── validators.js
+├── login/                     # Autenticação cliente
+│   ├── login.{html,css,js}
+├── cadastro/                  # Registro usuário
+│   ├── cadastro.{html,css,js}
+├── recuperar senha/           # Reset senha
+│   ├── recuperar.{html,css,js}
+├── cardapio/                  # Menu de pratos
+│   ├── cardapio.{html,css,js}
+├── carrinho/                  # Carrinho compras
+│   ├── carrinho.{html,css,js}
+├── cdp/                       # Confirmação pedido
+│   ├── cdp.{html,css,js}
+├── staff/                     # Seleção staff roles
+│   ├── staff.{html,css,js}
+├── cozinha/                   # Kanban pedidos cozinha
+│   ├── cozinha.{html,css,js}
+├── entregador/                # Gestão entregas
+│   ├── entregador.{html,css,js}
+├── gerente/                   # Dashboard gerente (placeholder)
+│   ├── gerente.{html,css,js}
+├── historicopedido/           # Histórico pedidos (mock + ready)
+│   ├── historicopedido.{html,css,js}
+└── ... (veja lista completa)
 ```
 
 ---
 
-## Como Executar
+## 🚀 **Como Executar**
 
-O projeto é composto por arquivos estáticos (HTML, CSS, JavaScript), então **não requer instalação de dependências**.
-
-### Opção 1: Abrir diretamente no navegador
-
-1. Navegue até a pasta `projeto.faculdade/`
-2. Dê um **duplo clique** no arquivo `index.html`
-3. O navegador abrirá automaticamente na tela de login
-
-### Opção 2: Pelo VS Code (Live Server)
-
-1. Instale a extensão **Live Server** no VS Code
-2. Clique com o botão direito em `index.html`
-3. Selecione **"Open with Live Server"**
-
-## Fluxo de Navegação Corrigido
-
+### **1. Direto no Navegador (Zero Setup)**
 ```
-index.html
-    ↓ (redireciona)
-login/login.html
-    ├── "Criar conta" → cadastro/cadastro.html
-    ├── "Esqueci minha senha" → recuperar senha/recuperar.html
-    └── "Fazer login como staff" → staff/staff.html
-
-cadastro/cadastro.html
-    └── "Voltar para login" / "Fazer login" → ../login/login.html
-
-recuperar senha/recuperar.html
-    └── "Fazer login" / "Voltar para login" → ../login/login.html
-    └── "Criar conta" → ../cadastro/cadastro.html
-
-staff/staff.html
-    ├── "Voltar para login" → ../login/login.html
-    ├── "Cozinha" → ../cozinha/cozinha.html
-    └── "Entregador" → ../entregador/entregador.html
-
-cozinha/cozinha.html
-    └── "Sair (⇥)" → ../login/login.html
-
-entregador/entregador.html
-    └── "Sair (⇥)" → ../login/login.html
+Duplo-clique em projeto.faculdade/index.html
 ```
+✅ Abre login automaticamente.
 
-> **Nota:** O perfil "Gerente" ainda não possui página implementada, portanto exibe apenas um `alert()` como placeholder.
+### **2. VS Code + Live Server (Recomendado)**
+1. Instale extensão **Live Server**.
+2. Botão direito em `index.html` → **Open with Live Server**.
 
 ---
 
-## Tecnologias
+## 🧭 **Fluxos de Uso**
 
-- HTML5 semântico + Acessibilidade (ARIA)
-- CSS3 puro
-- JavaScript Vanilla (ES5/ES6)
-- Ícones SVG inline
+### **Cliente**
+```
+index.html → login/
+         ↓ (login/convidado)
+    cardapio/ → carrinho/ → cdp/
+         ↓ (opcional)
+historicopedido/
+```
+
+### **Staff** (de login/staff/)
+```
+staff/ → [cozinha/ | entregador/ | gerente/ ]
+         ↓ (logout)
+      login/
+```
+
+**Teclas**: `⇥` (Tab) + Enter pra sair rápido.
 
 ---
 
-## Status das Correções
+## ✨ **Funcionalidades**
 
-Todas as navegações entre as páginas existentes foram corrigidas e estão funcionais. Não há links quebrados entre os módulos implementados.
+| Role | Features |
+|------|----------|
+| **Cliente** | Cardápio interativo, carrinho persistente, pedido c/ toasts, histórico mock/Firebase-ready, auth anônimo. |
+| **Cozinha** | Kanban real-time (pendente/pronto), timers, update status. |
+| **Entregador** | Lista prontos/rota/entregues, ligar cliente, mover status, histórico entregas. |
+| **Gerente** | Placeholder (alert) – pronto pra dashboard/analytics. |
+
+---
+
+## 🛠️ **Tech Stack**
+
+- **Frontend**: HTML5 semântico, CSS3 Flex/Grid, Vanilla JS ES6.
+- **Utils**: Validators, toasts custom.
+- **Design**: Google Fonts (Sora), SVGs inline, responsive mobile-first.
+
+**Sem Node/NPM** – puro static hosting ready (Netlify/GitHub Pages).
+
+---
+
+## 📊 **Status & Próximos Passos**
+
+✅ **Concluído**:
+- Todos fluxos navegáveis.
 

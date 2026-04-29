@@ -41,10 +41,6 @@ body {
 
 /* ── Link "Voltar" ── */
 .back-link {
-  position: fixed;
-  top: 40px;
-  left: 50%;
-  transform: translateX(calc(-50% - 110px)); /* alinha à esquerda do card */
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -52,6 +48,8 @@ body {
   text-decoration: none;
   font-size: 14px;
   transition: color var(--transition);
+  align-self: flex-start;
+  margin-bottom: 24px;
 }
 
 .back-link:hover,
@@ -333,6 +331,6 @@ body {
 /* ── Responsivo ── */
 @media (max-width: 480px) {
   .auth-card { padding: 28px 20px 24px; }
-  .back-link  { position: static; transform: none; margin-bottom: 24px; align-self: flex-start; }
+  .back-link  { margin-bottom: 24px; align-self: flex-start; }
   body        { justify-content: flex-start; }
 }

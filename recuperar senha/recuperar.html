@@ -8,11 +8,11 @@
 </head>
 <body>
 
-  <a href="login.html" class="back-link" aria-label="Voltar para a página de login">
-    <span aria-hidden="true">←</span> Voltar para login
-  </a>
-
   <main class="page-wrapper" role="main">
+    <a href="../login/login.html" class="back-link" aria-label="Voltar para a página de login">
+      <span aria-hidden="true">←</span> Voltar para login
+    </a>
+
     <section class="auth-card" aria-labelledby="form-title">
 
       <header class="auth-card__header">
@@ -77,6 +77,14 @@
     </section>
   </main>
 
+  <!-- Firebase SDKs (Compat) -->
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore-compat.js"></script>
+  <!-- Configuração e serviços -->
+  <script src="../src/firebase/firebase-config.js"></script>
+  <script src="../src/firebase/auth-service.js"></script>
+  <script src="../src/utils/validators.js"></script>
   <script src="recuperar.js"></script>
 </body>
 </html>
