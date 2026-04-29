@@ -1,10 +1,10 @@
-# Profit Brain Delivery 🍔🚀
+# Profit Brain Delivery 
 
 **Sistema completo de delivery e gestão de Dark Kitchen** desenvolvido como projeto acadêmico. Funciona 100% offline com fallbacks e integra com Firebase para dados em tempo real.
 
 ---
 
-## 🎯 **Visão Geral**
+##  **Visão Geral**
 
 Aplicação web **full-stack frontend** para:
 - **Clientes**: Cardápio → Carrinho → Pedido + histórico.
@@ -14,7 +14,7 @@ Aplicação web **full-stack frontend** para:
 
 ---
 
-## 📁 **Estrutura do Projeto**
+##  **Estrutura do Projeto**
 
 ```
 projeto.faculdade/
@@ -54,13 +54,13 @@ projeto.faculdade/
 
 ---
 
-## 🚀 **Como Executar**
+##  **Como Executar**
 
 ### **1. Direto no Navegador (Zero Setup)**
 ```
 Duplo-clique em projeto.faculdade/index.html
 ```
-✅ Abre login automaticamente.
+ Abre login automaticamente.
 
 ### **2. VS Code + Live Server (Recomendado)**
 1. Instale extensão **Live Server**.
@@ -68,7 +68,7 @@ Duplo-clique em projeto.faculdade/index.html
 
 ---
 
-## 🧭 **Fluxos de Uso**
+##  **Fluxos de Uso**
 
 ### **Cliente**
 ```
@@ -90,7 +90,7 @@ staff/ → [cozinha/ | entregador/ | gerente/ ]
 
 ---
 
-## ✨ **Funcionalidades**
+##  **Funcionalidades**
 
 | Role | Features |
 |------|----------|
@@ -101,7 +101,7 @@ staff/ → [cozinha/ | entregador/ | gerente/ ]
 
 ---
 
-## 🛠️ **Tech Stack**
+##  **Tech Stack**
 
 - **Frontend**: HTML5 semântico, CSS3 Flex/Grid, Vanilla JS ES6.
 - **Utils**: Validators, toasts custom.
@@ -111,8 +111,8 @@ staff/ → [cozinha/ | entregador/ | gerente/ ]
 
 ---
 
-## 📊 **Status & Próximos Passos**
+##  **Status & Próximos Passos**
 
-✅ **Concluído**:
+ **Concluído**:
 - Todos fluxos navegáveis.
 
