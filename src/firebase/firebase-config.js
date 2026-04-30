@@ -14,12 +14,12 @@
 // ============ SUBSTITUA OS VALORES ABAIXO ============
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAV_kfIUBESpMTq9L5FFUvUWOlx5_6VDAg",
-  authDomain: "profit-brain.firebaseapp.com",
-  projectId: "profit-brain",
-  storageBucket: "profit-brain.firebasestorage.app",
-  messagingSenderId: "625367535327",
-  appId: "1:625367535327:web:8a55350169fa36d198236a"
+  apiKey: "###",
+  authDomain: "###",
+  projectId: "###",
+  storageBucket: "###",
+  messagingSenderId: "###",
+  appId: "###"
 };
 
 // ======================================================
